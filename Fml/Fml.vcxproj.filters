@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="include\Fml.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Fml">
+      <UniqueIdentifier>{f4c2d088-3507-4e28-9b0c-a1f65ae1d5d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fml\Win32">
+      <UniqueIdentifier>{784ad087-2598-4973-951a-912a7b85cfdc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Fml.cpp">
+      <Filter>Fml</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FmlWin32.cpp">
+      <Filter>Fml\Win32</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

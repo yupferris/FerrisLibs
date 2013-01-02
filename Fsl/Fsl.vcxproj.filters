@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Fsl">
+      <UniqueIdentifier>{afb1e1df-3b97-4fc2-9cdd-6eaa0d17a7ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fsl\Win32">
+      <UniqueIdentifier>{b923efeb-dcde-45bd-9089-b11f3cbbace4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Fsl.h" />
+    <ClInclude Include="include\Fsl\Exception.h">
+      <Filter>Fsl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Fsl\String.h">
+      <Filter>Fsl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Fsl\StringDecl.h">
+      <Filter>Fsl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Fsl\List.h">
+      <Filter>Fsl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Fsl\Console.h">
+      <Filter>Fsl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Fsl\File.h">
+      <Filter>Fsl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Fsl\Stack.h">
+      <Filter>Fsl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Fsl\Threading.h">
+      <Filter>Fsl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Fsl\Time.h">
+      <Filter>Fsl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Fsl\Function.h">
+      <Filter>Fsl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Fsl\Forward.h">
+      <Filter>Fsl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Fsl\Dictionary.h">
+      <Filter>Fsl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Fsl\Random.h">
+      <Filter>Fsl</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Exception.cpp">
+      <Filter>Fsl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\File.cpp">
+      <Filter>Fsl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Win32Time.cpp">
+      <Filter>Fsl\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Win32Threading.cpp">
+      <Filter>Fsl\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Win32Console.cpp">
+      <Filter>Fsl\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Console.cpp">
+      <Filter>Fsl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Random.cpp">
+      <Filter>Fsl</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

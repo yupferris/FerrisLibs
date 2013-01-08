@@ -14,6 +14,9 @@ namespace Fsl
 
 		static List<unsigned char> ReadAllBytes(const String& path);
 		static void WriteAllBytes(const String& path, const List<unsigned char>& bytes);
+
+		static int ReadBytes(const String& path, unsigned char *buf, int size);
+		static void WriteBytes(const String& path, unsigned char *buf, int size);
 	};
 }
 

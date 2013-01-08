@@ -9,7 +9,7 @@ namespace Fgl
 {
 	String DialogWindow::OpenFile(const String& caption)
 	{
-		OpenFile(nullptr, caption);
+		return OpenFile(nullptr, caption);
 	}
 
 	String DialogWindow::OpenFile(Window *parentWindow, const String& caption)

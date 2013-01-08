@@ -236,10 +236,31 @@ namespace Fsl
 
 	template <typename T> bool Stringt<T>::StartsWith(const Stringt& s) const
 	{
-		if (!Length() || Length() < s.Length()) return false;
-		for (int i = 0; i < s.Length(); i++)
+		auto length = Length();
+		auto sLength = s.Length();
+		if (!Length() || length < sLength) return false;
+		for (int i = 0; i < sLength; i++)
 		{
 			if (stringData->Data[i] != s[i]) return false;
+		}
+		return true;
+	}
+
+	template <typename T> bool Stringt<T>::EndsWith(T c) const
+	{
+		auto length = Length();
+		if (!length || stringData->Data[length - 1] != c) return false;
+		return true;
+	}
+
+	template <typename T> bool Stringt<T>::EndsWith(const Stringt& s) const
+	{
+		auto length = Length();
+		auto sLength = s.Length();
+		if (!Length() || length < sLength) return false;
+		for (int i = 0; i < sLength; i++)
+		{
+			if (stringData->Data[i + (length - sLength)] != s[i]) return false;
 		}
 		return true;
 	}
@@ -253,8 +274,9 @@ namespace Fsl
 	{
 		if (!stringData) throw FSL_EXCEPTION("Cannot take substring from empty string");
 		if (startPos < 0 || startPos >= Length()) throw FSL_EXCEPTION("Invalid starting position specified");
-		if (len < 0 || len > Length()) throw FSL_EXCEPTION("Invalid length specified");
-		if (startPos + len > Length()) throw FSL_EXCEPTION("Invalid starting position and length specified");
+		auto length = Length();
+		if (len < 0 || len > length) throw FSL_EXCEPTION("Invalid length specified");
+		if (startPos + len > length) throw FSL_EXCEPTION("Invalid starting position and length specified");
 		Stringt<T> s;
 		s.stringData = new StringData(stringData->Data + startPos, len);
 		return s;

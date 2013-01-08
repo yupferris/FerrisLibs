@@ -8,10 +8,11 @@ namespace Fsl
 	template <typename T> class List
 	{
 	public:
-		List()
+		List(int initialSize = 0)
 		{
-			size = count = 0;
-			data = nullptr;
+			size = initialSize;
+			count = 0;
+			data = size ? new T[size] : nullptr;
 		}
 
 		List(const List& l)
@@ -174,7 +175,7 @@ namespace Fsl
 			{
 				int newSize = size;
 				while (newSize < count) newSize += 8;
-				T *newData = new T[newSize];
+				auto newData = new T[newSize];
 				for (int i = 0; i < size; i++) newData[i] = data[i];
 				size = newSize;
 				if (data) delete [] data;

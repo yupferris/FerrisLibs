@@ -56,6 +56,8 @@ namespace Fsl
 
 		bool StartsWith(T c) const;
 		bool StartsWith(const Stringt& s) const;
+		bool EndsWith(T c) const;
+		bool EndsWith(const Stringt& s) const;
 		Stringt Substring(int startPos) const;
 		Stringt Substring(int startPos, int len) const;
 		int LastIndexOf(T c) const;

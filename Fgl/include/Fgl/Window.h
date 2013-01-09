@@ -13,7 +13,7 @@ namespace Fgl
 	class Window
 	{
 	public:
-		enum class Style
+		enum class Style // TODO: Re-evaluate if this is worth having (feels really windows-specific)
 		{
 			Caption = 1,
 			SystemMenu = 2,

@@ -4,14 +4,13 @@ using namespace Fsl;
 
 namespace Fgl
 {
-	Window::Window(const String& title, int desiredWidth, int desiredHeight, bool fullscreen, Style style)
+	Window::Window(const String& title, int desiredWidth, int desiredHeight, bool fullscreen)
 	{
 		this->title = title;
 		this->desiredWidth = width;
 		this->desiredHeight = height;
 		width = height = 0;
 		this->fullscreen = fullscreen;
-		this->style = style;
 	}
 
 	String Window::GetTitle() const

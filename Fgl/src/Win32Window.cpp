@@ -4,21 +4,18 @@ using namespace Fsl;
 
 namespace Fgl
 {
-	Window *Window::Create(const String& title, int desiredWidth, int desiredHeight, bool fullscreen, Style style)
+	Window *Window::Create(const String& title, int desiredWidth, int desiredHeight, bool fullscreen)
 	{
-		return new Win32Window(title, desiredWidth, desiredHeight, fullscreen, style);
+		return new Win32Window(title, desiredWidth, desiredHeight, fullscreen);
 	}
 
 	int Win32Window::classRefCount = 0;
 	String Win32Window::className = "Class";
 
-	Win32Window::Win32Window(const String& title, int desiredWidth, int desiredHeight, bool fullscreen, Style style)
-		: Window(title, desiredWidth, desiredHeight, fullscreen, style)
+	Win32Window::Win32Window(const String& title, int desiredWidth, int desiredHeight, bool fullscreen)
+		: Window(title, desiredWidth, desiredHeight, fullscreen)
 	{
-		nativeStyle = 0;
-		if ((int)style & (int)Style::Caption)nativeStyle |= WS_CAPTION;
-		if ((int)style & (int)Style::SystemMenu)nativeStyle |= WS_SYSMENU;
-		if ((int)style & (int)Style::MinimizeBox)nativeStyle |= WS_MINIMIZEBOX;
+		nativeStyle = WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX;
 		instance = GetModuleHandle(nullptr);
 		menu = nullptr;
 

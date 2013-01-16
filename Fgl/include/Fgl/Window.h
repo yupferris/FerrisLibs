@@ -13,16 +13,7 @@ namespace Fgl
 	class Window
 	{
 	public:
-		enum class Style // TODO: Re-evaluate if this is worth having (feels really windows-specific)
-		{
-			Caption = 1,
-			SystemMenu = 2,
-			MinimizeBox = 4,
-
-			Default = Caption | SystemMenu | MinimizeBox,
-		};
-
-		static Window *Create(const Fsl::String& title, int desiredWidth = 800, int desiredHeight = 600, bool fullscreen = false, Style style = Style::Default);
+		static Window *Create(const Fsl::String& title, int desiredWidth = 800, int desiredHeight = 600, bool fullscreen = false);
 
 		virtual void Update() = 0;
 
@@ -48,13 +39,12 @@ namespace Fgl
 		Fsl::List<std::function<void()>> Close;
 
 	protected:
-		Window(const Fsl::String& title, int width, int height, bool fullscreen, Style style);
+		Window(const Fsl::String& title, int width, int height, bool fullscreen);
 
 		Fsl::String title;
 		int desiredWidth, desiredHeight;
 		int width, height;
 		bool fullscreen;
-		Style style;
 	};
 }
 

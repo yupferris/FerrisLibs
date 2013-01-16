@@ -11,7 +11,7 @@ namespace Fgl
 	class Win32Window : public Window
 	{
 	public:
-		Win32Window(const Fsl::String& title, int desiredWidth, int desiredHeight, bool fullscreen, Style style);
+		Win32Window(const Fsl::String& title, int desiredWidth, int desiredHeight, bool fullscreen);
 		~Win32Window();
 
 		virtual void Update();

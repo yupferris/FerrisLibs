@@ -8,11 +8,6 @@ namespace Fgl
 	{
 	}
 
-	void MenuItem::OnClick()
-	{
-		for (int i = 0; i < Click.Count(); i++) Click[i]();
-	}
-
 	MenuItem::MenuItem(const String& text)
 		: MenuChild(text)
 	{

@@ -3,8 +3,6 @@
 
 #include <Fsl.h>
 
-#include <functional>
-
 #include "Key.h"
 #include "Menu.h"
 
@@ -28,15 +26,10 @@ namespace Fgl
 
 		virtual void SetMenu(Menu *menu) = 0;
 
-		void OnResize(int width, int height);
-		void OnKeyDown(Key key);
-		void OnKeyUp(Key key);
-		void OnClose();
-
-		Fsl::List<std::function<void(int width, int height)>> Resize;
-		Fsl::List<std::function<void(Key key)>> KeyDown;
-		Fsl::List<std::function<void(Key key)>> KeyUp;
-		Fsl::List<std::function<void()>> Close;
+		Fsl::Event2<int, int> Resize;
+		Fsl::Event1<Key> KeyDown;
+		Fsl::Event1<Key> KeyUp;
+		Fsl::Event Closing;
 
 	protected:
 		Window(const Fsl::String& title, int width, int height, bool fullscreen);

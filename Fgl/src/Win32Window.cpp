@@ -112,19 +112,19 @@ namespace Fgl
 		case WM_SIZE:
 			width = LOWORD(lParam);
 			height = HIWORD(lParam);
-			OnResize(width, height);
+			Resize(width, height);
 			break;
 
 		case WM_KEYDOWN:
-			OnKeyDown(wParamToKey(wParam));
+			KeyDown(wParamToKey(wParam));
 			break;
 
 		case WM_KEYUP:
-			OnKeyUp(wParamToKey(wParam));
+			KeyUp(wParamToKey(wParam));
 			break;
 
 		case WM_CLOSE:
-			OnClose();
+			Closing();
 			break;
 
 		case WM_COMMAND:

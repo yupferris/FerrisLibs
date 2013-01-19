@@ -42,24 +42,4 @@ namespace Fgl
 	{
 		return fullscreen;
 	}
-
-	void Window::OnResize(int width, int height)
-	{
-		for (int i = 0; i < Resize.Count(); i++) Resize[i](width, height);
-	}
-
-	void Window::OnKeyDown(Key key)
-	{
-		for (int i = 0; i < KeyDown.Count(); i++) KeyDown[i](key);
-	}
-
-	void Window::OnKeyUp(Key key)
-	{
-		for (int i = 0; i < KeyUp.Count(); i++) KeyUp[i](key);
-	}
-
-	void Window::OnClose()
-	{
-		for (int i = 0; i < Close.Count(); i++) Close[i]();
-	}
 }

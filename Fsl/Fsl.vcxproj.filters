@@ -49,6 +49,9 @@
     <ClInclude Include="include\Fsl\Random.h">
       <Filter>Fsl</Filter>
     </ClInclude>
+    <ClInclude Include="include\Fsl\Event.h">
+      <Filter>Fsl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Exception.cpp">

@@ -12,5 +12,6 @@
 #include "Fsl/Threading.h"
 #include "Fsl/Time.h"
 #include "Fsl/Random.h"
+#include "Fsl/Event.h"
 
 #endif

@@ -77,7 +77,7 @@ namespace Fgl
 		{
 			if (LOWORD(wParam) == childItems[i]->GetId())
 			{
-				childItems[i]->OnClick();
+				childItems[i]->Click();
 				return;
 			}
 		}

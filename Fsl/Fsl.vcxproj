@@ -14,6 +14,7 @@
     <ClInclude Include="include\Fsl.h" />
     <ClInclude Include="include\Fsl\Console.h" />
     <ClInclude Include="include\Fsl\Dictionary.h" />
+    <ClInclude Include="include\Fsl\Event.h" />
     <ClInclude Include="include\Fsl\Exception.h" />
     <ClInclude Include="include\Fsl\File.h" />
     <ClInclude Include="include\Fsl\Forward.h" />

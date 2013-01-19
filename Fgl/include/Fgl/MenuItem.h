@@ -3,8 +3,6 @@
 
 #include <Fsl.h>
 
-#include <functional>
-
 #include "MenuChild.h"
 
 namespace Fgl
@@ -16,9 +14,7 @@ namespace Fgl
 
 		virtual ~MenuItem();
 
-		void OnClick();
-
-		Fsl::List<std::function<void()>> Click;
+		Fsl::Event Click;
 
 	protected:
 		MenuItem(const Fsl::String& text);

@@ -9,6 +9,7 @@
 #include "Fgl/MenuItem.h"
 #include "Fgl/Menu.h"
 #include "Fgl/Widget.h"
+#include "Fgl/WidgetParent.h"
 #include "Fgl/Viewport.h"
 
 #endif

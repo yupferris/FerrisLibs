@@ -20,6 +20,7 @@
     <ClInclude Include="include\Fgl\MessageWindow.h" />
     <ClInclude Include="include\Fgl\Viewport.h" />
     <ClInclude Include="include\Fgl\Widget.h" />
+    <ClInclude Include="include\Fgl\IWidgetParent.h" />
     <ClInclude Include="include\Fgl\Win32Menu.h" />
     <ClInclude Include="include\Fgl\Win32MenuItem.h" />
     <ClInclude Include="include\Fgl\Win32MessageWindow.h" />

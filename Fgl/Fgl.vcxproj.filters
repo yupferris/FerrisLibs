@@ -49,6 +49,9 @@
     <ClInclude Include="include\Fgl\Widget.h">
       <Filter>Fgl</Filter>
     </ClInclude>
+    <ClInclude Include="include\Fgl\IWidgetParent.h">
+      <Filter>Fgl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Window.cpp">

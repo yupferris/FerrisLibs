@@ -3,12 +3,14 @@
 
 #include <Fsl.h>
 
+#include "IWidgetParent.h"
+#include "Widget.h"
 #include "Key.h"
 #include "Menu.h"
 
 namespace Fgl
 {
-	class Window
+	class Window : public IWidgetParent
 	{
 	public:
 		static Window *Create(const Fsl::String& title, int desiredWidth = 800, int desiredHeight = 600, bool fullscreen = false);
@@ -31,6 +33,10 @@ namespace Fgl
 		Fsl::Event1<Key> KeyUp;
 		Fsl::Event Closing;
 
+		virtual void AddChild(Widget *child);
+		virtual void RemoveChild(Widget *child);
+		virtual const Fsl::List<Widget *>& GetChildren() const;
+
 	protected:
 		Window(const Fsl::String& title, int width, int height, bool fullscreen);
 
@@ -38,6 +44,8 @@ namespace Fgl
 		int desiredWidth, desiredHeight;
 		int width, height;
 		bool fullscreen;
+
+		Fsl::List<Widget *> children;
 	};
 }
 

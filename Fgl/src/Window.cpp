@@ -42,4 +42,19 @@ namespace Fgl
 	{
 		return fullscreen;
 	}
+
+	void Window::AddChild(Widget *child)
+	{
+		children.Add(child);
+	}
+
+	void Window::RemoveChild(Widget *child)
+	{
+		children.Remove(child);
+	}
+
+	const List<Widget *>& Window::GetChildren() const
+	{
+		return children;
+	}
 }

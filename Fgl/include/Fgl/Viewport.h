@@ -8,6 +8,8 @@ namespace Fgl
 	class Viewport : public Widget
 	{
 	public:
+		static Viewport *Create();
+
 		void *GetNativeHandle() const;
 	};
 }

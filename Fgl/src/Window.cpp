@@ -46,14 +46,16 @@ namespace Fgl
 	void Window::AddChild(Widget *child)
 	{
 		children.Add(child);
+		child->SetParent(this);
 	}
 
 	void Window::RemoveChild(Widget *child)
 	{
 		children.Remove(child);
+		child->SetParent(nullptr);
 	}
 
-	const List<Widget *>& Window::GetChildren() const
+	List<Widget *>& Window::GetChildren()
 	{
 		return children;
 	}

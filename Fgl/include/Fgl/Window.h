@@ -35,7 +35,7 @@ namespace Fgl
 
 		virtual void AddChild(Widget *child);
 		virtual void RemoveChild(Widget *child);
-		virtual const Fsl::List<Widget *>& GetChildren() const;
+		virtual Fsl::List<Widget *>& GetChildren();
 
 	protected:
 		Window(const Fsl::String& title, int width, int height, bool fullscreen);

@@ -26,6 +26,7 @@
     <ClInclude Include="include\Fsl\StringDecl.h" />
     <ClInclude Include="include\Fsl\Threading.h" />
     <ClInclude Include="include\Fsl\Time.h" />
+    <ClInclude Include="include\Fsl\Win32Console.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Console.cpp" />

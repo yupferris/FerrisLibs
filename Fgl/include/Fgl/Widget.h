@@ -3,6 +3,8 @@
 
 namespace Fgl
 {
+	class IWidgetParent;
+
 	class Widget
 	{
 	public:
@@ -15,11 +17,16 @@ namespace Fgl
 		virtual int GetWidth() const;
 		virtual int GetHeight() const;
 
+		virtual IWidgetParent *GetParent() const;
+		virtual void SetParent(const IWidgetParent *parent);
+
 	protected:
 		int desiredX, desiredY;
 		int desiredWidth, desiredHeight;
 		int x, y;
 		int width, height;
+
+		IWidgetParent *parent;
 	};
 }
 

@@ -94,7 +94,7 @@ namespace Fgl
 		default: throw FSL_EXCEPTION("Invalid message window buttons specified");
 		}
 
-		switch (MessageBox(window ? window->GetHandle() : NULL, text.GetData(), caption.GetData(), boxType))
+		switch (MessageBox(window ? (HWND)window->GetNativeHandle() : NULL, text.GetData(), caption.GetData(), boxType))
 		{
 		case IDOK: return MessageWindow::Response::Ok;
 		case IDCANCEL: return MessageWindow::Response::Cancel;

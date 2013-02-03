@@ -19,7 +19,7 @@ namespace Fgl
 		OPENFILENAME ofn =
 		{
 			sizeof(OPENFILENAME),
-			parentWindow ? ((Win32Window *)parentWindow)->GetHandle() : NULL,
+			parentWindow ? (HWND)parentWindow->GetNativeHandle() : NULL,
 			0,
 			"All Files (*.*)\n*.*\0", // TODO: filters
 			0, 0,

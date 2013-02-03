@@ -13,6 +13,7 @@ namespace Fgl
 		virtual void AddChild(Widget *child) = 0;
 		virtual void RemoveChild(Widget *child) = 0;
 		virtual Fsl::List<Widget *>& GetChildren() = 0;
+		virtual void *GetNativeHandle() const = 0;
 	};
 };
 

@@ -10,7 +10,9 @@ namespace Fgl
 	public:
 		static Viewport *Create();
 
-		void *GetNativeHandle() const;
+		virtual ~Viewport();
+
+		virtual void *GetNativeHandle() const = 0;
 	};
 }
 

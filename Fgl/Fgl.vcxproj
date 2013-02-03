@@ -24,6 +24,7 @@
     <ClInclude Include="include\Fgl\Win32Menu.h" />
     <ClInclude Include="include\Fgl\Win32MenuItem.h" />
     <ClInclude Include="include\Fgl\Win32MessageWindow.h" />
+    <ClInclude Include="include\Fgl\Win32Viewport.h" />
     <ClInclude Include="include\Fgl\Win32Window.h" />
     <ClInclude Include="include\Fgl\Window.h" />
   </ItemGroup>
@@ -31,10 +32,13 @@
     <ClCompile Include="src\Menu.cpp" />
     <ClCompile Include="src\MenuChild.cpp" />
     <ClCompile Include="src\MenuItem.cpp" />
+    <ClCompile Include="src\Viewport.cpp" />
+    <ClCompile Include="src\Widget.cpp" />
     <ClCompile Include="src\Win32DialogWindow.cpp" />
     <ClCompile Include="src\Win32Menu.cpp" />
     <ClCompile Include="src\Win32MenuItem.cpp" />
     <ClCompile Include="src\Win32MessageWindow.cpp" />
+    <ClCompile Include="src\Win32Viewport.cpp" />
     <ClCompile Include="src\Win32Window.cpp" />
     <ClCompile Include="src\Window.cpp" />
   </ItemGroup>

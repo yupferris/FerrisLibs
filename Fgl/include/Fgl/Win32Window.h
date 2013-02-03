@@ -12,17 +12,22 @@ namespace Fgl
 	{
 	public:
 		Win32Window(const Fsl::String& title, int desiredWidth, int desiredHeight, bool fullscreen);
-		~Win32Window();
+		virtual ~Win32Window();
 
 		virtual void Update();
 
-		virtual void SetSize(int desiredWidth, int desiredHeight);
+		virtual void SetDesiredSize(int desiredWidth, int desiredHeight);
 
 		virtual void SetMenu(Menu *menu);
 
-		HWND GetHandle() const;
+		virtual void AddChild(Widget *child);
+		virtual void RemoveChild(Widget *child);
+
+		virtual void *GetNativeHandle() const;
 
 	private:
+		void resetLayout();
+
 		LRESULT CALLBACK wndProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);
 		static LRESULT CALLBACK wndProcRouter(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);
 
@@ -33,7 +38,6 @@ namespace Fgl
 
 		DWORD nativeStyle;
 		HWND handle;
-		HINSTANCE instance;
 
 		Win32Menu *menu;
 	};

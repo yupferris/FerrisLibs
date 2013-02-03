@@ -10,14 +10,15 @@ namespace Fgl
 	}
 
 	int Win32Window::classRefCount = 0;
-	String Win32Window::className = "Class";
+	String Win32Window::className = "FglWindow";
 
 	Win32Window::Win32Window(const String& title, int desiredWidth, int desiredHeight, bool fullscreen)
 		: Window(title, desiredWidth, desiredHeight, fullscreen)
 	{
 		nativeStyle = WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX;
-		instance = GetModuleHandle(nullptr);
 		menu = nullptr;
+
+		auto instance = GetModuleHandle(NULL);
 
 		if (!classRefCount)
 		{
@@ -30,7 +31,7 @@ namespace Fgl
 				instance,
 				LoadIcon(NULL, IDI_APPLICATION),
 				LoadCursor(NULL, IDC_ARROW),
-				(HBRUSH) COLOR_WINDOW,
+				(HBRUSH)COLOR_WINDOW,
 				NULL,
 				className.GetData(),
 				NULL
@@ -52,7 +53,7 @@ namespace Fgl
 		if (!handle) throw FSL_EXCEPTION("Couldn't create window");
 
 		ShowWindow(handle, SW_SHOWNORMAL);
-		SetSize(desiredWidth, desiredHeight);
+		SetDesiredSize(desiredWidth, desiredHeight);
 		SetForegroundWindow(handle);
 		SetFocus(handle);
 	}
@@ -62,7 +63,7 @@ namespace Fgl
 		::SetMenu(handle, nullptr);
 		DestroyWindow(handle);
 		classRefCount--;
-		if (!classRefCount) UnregisterClass(className.GetData(), instance);
+		if (!classRefCount) UnregisterClass(className.GetData(), GetModuleHandle(NULL));
 	}
 
 	void Win32Window::Update()
@@ -75,7 +76,7 @@ namespace Fgl
 		}
 	}
 
-	void Win32Window::SetSize(int desiredWidth, int desiredHeight)
+	void Win32Window::SetDesiredSize(int desiredWidth, int desiredHeight)
 	{
 		this->desiredWidth = desiredWidth;
 		this->desiredHeight = desiredHeight;
@@ -97,12 +98,33 @@ namespace Fgl
 		{
 			if (!::SetMenu(handle, nullptr)) throw FSL_EXCEPTION("Could not detach menu from window");
 		}
-		SetSize(desiredWidth, desiredHeight);
+		SetDesiredSize(desiredWidth, desiredHeight);
 	}
 
-	HWND Win32Window::GetHandle() const
+	void Win32Window::AddChild(Widget *child)
+	{
+		Window::AddChild(child);
+		resetLayout();
+	}
+
+	void Win32Window::RemoveChild(Widget *child)
+	{
+		Window::RemoveChild(child);
+		resetLayout();
+	}
+
+	void *Win32Window::GetNativeHandle() const
 	{
 		return handle;
+	}
+
+	void Win32Window::resetLayout()
+	{
+		for (int i = 0; i < children.Count(); i++)
+		{
+			children[i]->SetPos(0, 0);
+			children[i]->SetSize(desiredWidth, desiredHeight);
+		}
 	}
 
 	LRESULT CALLBACK Win32Window::wndProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
@@ -112,7 +134,8 @@ namespace Fgl
 		case WM_SIZE:
 			width = LOWORD(lParam);
 			height = HIWORD(lParam);
-			Resize(width, height);
+			SizeChanged(width, height);
+			resetLayout();
 			break;
 
 		case WM_KEYDOWN:

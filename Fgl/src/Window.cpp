@@ -4,13 +4,8 @@ using namespace Fsl;
 
 namespace Fgl
 {
-	Window::Window(const String& title, int desiredWidth, int desiredHeight, bool fullscreen)
+	Window::~Window()
 	{
-		this->title = title;
-		this->desiredWidth = width;
-		this->desiredHeight = height;
-		width = height = 0;
-		this->fullscreen = fullscreen;
 	}
 
 	String Window::GetTitle() const
@@ -58,5 +53,14 @@ namespace Fgl
 	List<Widget *>& Window::GetChildren()
 	{
 		return children;
+	}
+
+	Window::Window(const String& title, int desiredWidth, int desiredHeight, bool fullscreen)
+	{
+		this->title = title;
+		this->desiredWidth = width;
+		this->desiredHeight = height;
+		width = height = 0;
+		this->fullscreen = fullscreen;
 	}
 }

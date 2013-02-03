@@ -34,10 +34,13 @@ namespace Fgl
 			if (!RegisterClassEx(&wndClass)) throw FSL_EXCEPTION("Couldn't register viewport class");
 		}
 		classRefCount++;
+
+		handle = NULL;
 	}
 	
 	Win32Viewport::~Win32Viewport()
 	{
+		destroyWindow();
 		classRefCount--;
 		if (!classRefCount) UnregisterClass(className.GetData(), GetModuleHandle(NULL));
 	}
@@ -49,10 +52,13 @@ namespace Fgl
 
 	void Win32Viewport::SetParent(IWidgetParent *parent)
 	{
-		if (GetParent() != nullptr) DestroyWindow(handle);
+		destroyWindow();
 		Widget::SetParent(parent);
-		handle = CreateWindow(className.GetData(), "Viewport", WS_CHILD, GetDesiredX(), GetDesiredY(), GetDesiredWidth(), GetDesiredHeight(), (HWND)parent->GetNativeHandle(), NULL, GetModuleHandle(NULL), this);
-		ShowWindow(handle, SW_SHOWNORMAL);
+		if (parent)
+		{
+			handle = CreateWindow(className.GetData(), "Viewport", WS_CHILD, GetDesiredX(), GetDesiredY(), GetDesiredWidth(), GetDesiredHeight(), (HWND)parent->GetNativeHandle(), NULL, GetModuleHandle(NULL), this);
+			ShowWindow(handle, SW_SHOWNORMAL);
+		}
 	}
 
 	void Win32Viewport::SetPos(int x, int y)
@@ -70,6 +76,15 @@ namespace Fgl
 	void Win32Viewport::layoutChanged()
 	{
 		SetWindowPos(handle, 0, GetX(), GetY(), GetWidth(), GetHeight(), 0);
+	}
+
+	void Win32Viewport::destroyWindow()
+	{
+		if (handle)
+		{
+			DestroyWindow(handle);
+			handle = NULL;
+		}
 	}
 
 	LRESULT CALLBACK Win32Viewport::wndProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)

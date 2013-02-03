@@ -22,6 +22,7 @@ namespace Fgl
 
 	private:
 		void layoutChanged();
+		void destroyWindow();
 
 		LRESULT CALLBACK wndProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);
 		static LRESULT CALLBACK wndProcRouter(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);

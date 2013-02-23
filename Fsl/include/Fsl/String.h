@@ -40,12 +40,12 @@ namespace Fsl
 		init(i);
 	}
 
-	template <typename T> Stringt<T>::Stringt(float f, int decimalPlaces = 6)
+	template <typename T> Stringt<T>::Stringt(float f, int decimalPlaces)
 	{
 		init((double)f, decimalPlaces);
 	}
 
-	template <typename T> Stringt<T>::Stringt(double d, int decimalPlaces = 6)
+	template <typename T> Stringt<T>::Stringt(double d, int decimalPlaces)
 	{
 		init(d, decimalPlaces);
 	}

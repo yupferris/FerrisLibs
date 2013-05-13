@@ -81,6 +81,11 @@ namespace Fgl
 
 	void Widget::SetParent(IWidgetParent *parent)
 	{
-		this->parent = parent;
+		if (parent != this->parent)
+		{
+			ParentChanging();
+			this->parent = parent;
+			ParentChanged();
+		}
 	}
 }

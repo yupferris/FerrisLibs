@@ -14,6 +14,9 @@
     <ClInclude Include="include\Fel\Cpu32.h">
       <Filter>Fel</Filter>
     </ClInclude>
+    <ClInclude Include="include\Fel\VideoModule.h">
+      <Filter>Fel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Fel">
@@ -22,6 +25,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\src\Cpu32.cpp">
+      <Filter>Fel</Filter>
+    </ClCompile>
+    <ClCompile Include="src\VideoModule.cpp">
       <Filter>Fel</Filter>
     </ClCompile>
   </ItemGroup>

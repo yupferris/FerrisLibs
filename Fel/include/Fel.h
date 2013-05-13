@@ -5,5 +5,6 @@
 #include "Fel/Emulator32.h"
 #include "Fel/Cpu.h"
 #include "Fel/Cpu32.h"
+#include "Fel/VideoModule.h"
 
 #endif

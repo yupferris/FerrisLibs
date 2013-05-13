@@ -1,6 +1,8 @@
 #ifndef __EMULATOR_H__
 #define __EMULATOR_H__
 
+#include "VideoModule.h"
+
 namespace Fel
 {
 	class Emulator
@@ -11,6 +13,8 @@ namespace Fel
 
 		virtual int GetOutputWidth() const = 0;
 		virtual int GetOutputHeight() const = 0;
+
+		virtual void SetVideoModule(VideoModule *videoModule) = 0;
 	};
 }
 

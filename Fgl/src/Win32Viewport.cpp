@@ -25,7 +25,7 @@ namespace Fgl
 				0, 0,
 				GetModuleHandle(NULL),
 				NULL,
-				NULL,
+				LoadCursor(NULL, IDC_ARROW),
 				(HBRUSH)GetStockObject(BLACK_BRUSH),
 				NULL,
 				className.GetData(),

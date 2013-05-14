@@ -13,12 +13,12 @@ namespace Fgl
 		Win32Viewport();
 		virtual ~Win32Viewport();
 
-		virtual void *GetNativeHandle() const;
-
 		virtual void SetParent(IWidgetParent *parent);
 
 		virtual void SetPos(int x, int y);
 		virtual void SetSize(int width, int height);
+
+		HWND GetHandle() const;
 
 	private:
 		void layoutChanged();

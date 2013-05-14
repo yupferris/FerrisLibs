@@ -11,8 +11,6 @@ namespace Fgl
 		static Viewport *Create();
 
 		virtual ~Viewport();
-
-		virtual void *GetNativeHandle() const = 0;
 	};
 }
 

@@ -45,11 +45,6 @@ namespace Fgl
 		if (!classRefCount) UnregisterClass(className.GetData(), GetModuleHandle(NULL));
 	}
 
-	void *Win32Viewport::GetNativeHandle() const
-	{
-		return (void *)handle;
-	}
-
 	void Win32Viewport::SetParent(IWidgetParent *parent)
 	{
 		destroyWindow();
@@ -71,6 +66,11 @@ namespace Fgl
 	{
 		Widget::SetSize(width, height);
 		layoutChanged();
+	}
+
+	HWND Win32Viewport::GetHandle() const
+	{
+		return handle;
 	}
 
 	void Win32Viewport::layoutChanged()

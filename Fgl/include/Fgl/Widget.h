@@ -31,8 +31,6 @@ namespace Fgl
 		virtual IWidgetParent *GetParent() const;
 		virtual void SetParent(IWidgetParent *parent);
 
-		Fsl::Event ParentChanging, ParentChanged;
-
 	private:
 		int desiredX, desiredY;
 		int desiredWidth, desiredHeight;

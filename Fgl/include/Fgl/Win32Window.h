@@ -20,8 +20,7 @@ namespace Fgl
 
 		virtual void SetMenu(Menu *menu);
 
-		virtual void AddChild(Widget *child);
-		virtual void RemoveChild(Widget *child);
+		virtual void SetContent(Widget *widget);
 
 		virtual void *GetNativeHandle() const;
 

@@ -38,21 +38,11 @@ namespace Fgl
 		return fullscreen;
 	}
 
-	void Window::AddChild(Widget *child)
+	void Window::SetContent(Widget *widget)
 	{
-		children.Add(child);
-		child->SetParent(this);
-	}
-
-	void Window::RemoveChild(Widget *child)
-	{
-		children.Remove(child);
-		child->SetParent(nullptr);
-	}
-
-	List<Widget *>& Window::GetChildren()
-	{
-		return children;
+		if (content) content->SetParent(nullptr);
+		content = widget;
+		content->SetParent(this);
 	}
 
 	Window::Window(const String& title, int desiredWidth, int desiredHeight, bool fullscreen)

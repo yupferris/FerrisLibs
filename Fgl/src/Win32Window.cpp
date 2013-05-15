@@ -101,15 +101,9 @@ namespace Fgl
 		SetDesiredSize(desiredWidth, desiredHeight);
 	}
 
-	void Win32Window::AddChild(Widget *child)
+	void Win32Window::SetContent(Widget *widget)
 	{
-		Window::AddChild(child);
-		resetLayout();
-	}
-
-	void Win32Window::RemoveChild(Widget *child)
-	{
-		Window::RemoveChild(child);
+		Window::SetContent(widget);
 		resetLayout();
 	}
 
@@ -120,10 +114,10 @@ namespace Fgl
 
 	void Win32Window::resetLayout()
 	{
-		for (int i = 0; i < children.Count(); i++)
+		if (content)
 		{
-			children[i]->SetPos(0, 0);
-			children[i]->SetSize(desiredWidth, desiredHeight);
+			content->SetPos(0, 0);
+			content->SetSize(desiredWidth, desiredHeight);
 		}
 	}
 

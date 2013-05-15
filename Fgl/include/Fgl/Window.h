@@ -29,9 +29,7 @@ namespace Fgl
 
 		virtual void SetMenu(Menu *menu) = 0;
 
-		virtual void AddChild(Widget *child);
-		virtual void RemoveChild(Widget *child);
-		virtual Fsl::List<Widget *>& GetChildren();
+		virtual void SetContent(Widget *widget);
 
 		Fsl::Event2<int, int> SizeChanged;
 		Fsl::Event1<Key> KeyDown;
@@ -46,7 +44,7 @@ namespace Fgl
 		int width, height;
 		bool fullscreen;
 
-		Fsl::List<Widget *> children;
+		Widget *content;
 	};
 }
 

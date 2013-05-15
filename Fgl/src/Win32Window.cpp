@@ -114,6 +114,7 @@ namespace Fgl
 
 	void Win32Window::resetLayout()
 	{
+		auto content = GetContent();
 		if (content)
 		{
 			content->SetPos(0, 0);

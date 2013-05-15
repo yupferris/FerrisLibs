@@ -42,7 +42,12 @@ namespace Fgl
 	{
 		if (content) content->SetParent(nullptr);
 		content = widget;
-		content->SetParent(this);
+		if (content) content->SetParent(this);
+	}
+
+	Widget *Window::GetContent() const
+	{
+		return content;
 	}
 
 	Window::Window(const String& title, int desiredWidth, int desiredHeight, bool fullscreen)
@@ -52,5 +57,7 @@ namespace Fgl
 		this->desiredHeight = height;
 		width = height = 0;
 		this->fullscreen = fullscreen;
+
+		content = nullptr;
 	}
 }

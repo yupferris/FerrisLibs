@@ -1,11 +1,11 @@
-#ifndef __EMULATOR_H__
-#define __EMULATOR_H__
+#ifndef __FEL_IEMULATOR_H__
+#define __FEL_IEMULATOR_H__
 
-#include "VideoModule.h"
+#include "IVideoModule.h"
 
 namespace Fel
 {
-	class Emulator
+	class IEmulator
 	{
 	public:
 		virtual void Reset() = 0;
@@ -14,7 +14,7 @@ namespace Fel
 		virtual int GetOutputWidth() const = 0;
 		virtual int GetOutputHeight() const = 0;
 
-		virtual void SetVideoModule(VideoModule *videoModule) = 0;
+		virtual void SetVideoModule(IVideoModule *videoModule) = 0;
 	};
 }
 

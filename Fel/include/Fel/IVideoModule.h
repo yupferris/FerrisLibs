@@ -1,12 +1,12 @@
-#ifndef __FEL_VIDEOMODULE_H__
-#define __FEL_VIDEOMODULE_H__
+#ifndef __FEL_IVIDEOMODULE_H__
+#define __FEL_IVIDEOMODULE_H__
 
 namespace Fel
 {
-	class VideoModule
+	class IVideoModule
 	{
 	public:
-		virtual ~VideoModule();
+		virtual ~IVideoModule();
 		virtual void SetOutput(int width, int height, const unsigned int *data) = 0;
 	};
 }

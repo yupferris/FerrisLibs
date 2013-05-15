@@ -1,11 +1,11 @@
-#ifndef __FEL_EMULATOR32_H__
-#define __FEL_EMULATOR32_H__
+#ifndef __FEL_IEMULATOR32_H__
+#define __FEL_IEMULATOR32_H__
 
-#include "Emulator.h"
+#include "IEmulator.h"
 
 namespace Fel
 {
-	class Emulator32 : public Emulator
+	class IEmulator32 : public IEmulator
 	{
 	public:
 		virtual unsigned char ReadByte(unsigned int address) = 0;

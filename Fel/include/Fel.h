@@ -1,10 +1,10 @@
 #ifndef __FEL_H__
 #define __FEL_H__
 
-#include "Fel/Emulator.h"
-#include "Fel/Emulator32.h"
-#include "Fel/Cpu.h"
+#include "Fel/IEmulator.h"
+#include "Fel/IEmulator32.h"
+#include "Fel/ICpu.h"
 #include "Fel/Cpu32.h"
-#include "Fel/VideoModule.h"
+#include "Fel/IVideoModule.h"
 
 #endif

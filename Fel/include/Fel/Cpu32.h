@@ -1,18 +1,18 @@
 #ifndef __FEL_CPU32_H__
 #define __FEL_CPU32_H__
 
-#include "Cpu.h"
-#include "Emulator32.h"
+#include "ICpu.h"
+#include "IEmulator32.h"
 
 namespace Fel
 {
-	class Cpu32 : Cpu
+	class Cpu32 : ICpu
 	{
 	public:
-		Cpu32(Emulator32 *emulator);
+		Cpu32(IEmulator32 *emulator);
 
 	protected:
-		Emulator32 *emulator;
+		IEmulator32 *emulator;
 	};
 }
 

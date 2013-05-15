@@ -6,7 +6,7 @@ namespace Fsl
 	class Random
 	{
 	public:
-		Random(unsigned int seed = 0);
+		Random(unsigned int seed = 1);
 
 		void SetSeed(unsigned int seed);
 
@@ -19,7 +19,7 @@ namespace Fsl
 		float GetNextFloat(float low, float high);
 
 	private:
-		unsigned int seed;
+		unsigned int x, y;
 	};
 }
 

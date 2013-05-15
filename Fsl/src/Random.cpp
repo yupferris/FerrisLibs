@@ -9,7 +9,9 @@ namespace Fsl
 
 	void Random::SetSeed(unsigned int seed)
 	{
-		this->seed = seed;
+		if (!seed) seed = 1;
+		x = seed;
+		y = seed + 1;
 	}
 
 	int Random::GetNextInt()
@@ -24,8 +26,9 @@ namespace Fsl
 
 	int Random::GetNextInt(int low, int high)
 	{
-		seed = 0x00269ec3 + seed * 0x000343fd;
-		return seed % (high - low) + low;
+		x = 36969 * (x & 0xffff) + (x >> 16);
+		y = 18000 * (y & 0xffff) + (y >> 16);
+		return (x << 16) + y;
 	}
 
 	float Random::GetNextFloat()

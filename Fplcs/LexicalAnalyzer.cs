@@ -17,8 +17,8 @@ namespace Fplcs
             startState = CreateState();
             foreach (var kvp in tokenDefinitions)
             {
-                RegexParser regexParser = new RegexParser();
-                NfaFragment fragment = compileRegexParserAstNode(regexParser.Parse(kvp.Value.Regex), kvp.Value.RegexOptions);
+                var regexParser = new RegexParser();
+                var fragment = compileRegexParserAstNode(regexParser.Parse(kvp.Value.Regex), kvp.Value.RegexOptions);
                 fragment.ConnectEnds(CreateState(kvp.Key));
                 startState.AddEpsilonTransition(fragment.Start);
             }
@@ -48,14 +48,14 @@ namespace Fplcs
             {
                 matchList1.Clear();
                 matchList2.Clear();
-                MatchList currentMatchList = matchList1;
-                MatchList nextMatchList = matchList2;
+                var currentMatchList = matchList1;
+                var nextMatchList = matchList2;
                 currentMatchList.AddState(startState, inputPos);
 
                 int startPos = inputPos;
                 for (; inputPos < input.Length; inputPos++)
                 {
-                    char c = input[inputPos];
+                    var c = input[inputPos];
 
                     nextMatchList.Clear();
                     for (int i = 0; i < currentMatchList.Count; i++)
@@ -103,7 +103,7 @@ namespace Fplcs
                 }
                 if (acceptingState != null)
                 {
-                    Token t = tokenDefinitions[acceptingState.AcceptingTokenType].TokenCallback != null ? tokenDefinitions[acceptingState.AcceptingTokenType].TokenCallback(input, startPos, inputPos - startPos) : new Token(acceptingState.AcceptingTokenType);
+                    var t = tokenDefinitions[acceptingState.AcceptingTokenType].TokenCallback != null ? tokenDefinitions[acceptingState.AcceptingTokenType].TokenCallback(input, startPos, inputPos - startPos) : new Token(acceptingState.AcceptingTokenType);
                     if (t != null) tokens.Add(t);
                 }
                 else

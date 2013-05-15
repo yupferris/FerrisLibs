@@ -10,9 +10,9 @@ namespace Fplcs
     {
         class PrecedenceNode
         {
-            public TTokenType Type;
-            public List<PrecedenceNode> Parents = new List<PrecedenceNode>();
-            public List<PrecedenceNode> Children = new List<PrecedenceNode>();
+            public readonly TTokenType Type;
+            public readonly List<PrecedenceNode> Parents = new List<PrecedenceNode>();
+            public readonly List<PrecedenceNode> Children = new List<PrecedenceNode>();
 
             public PrecedenceNode(TTokenType type)
             {
@@ -44,19 +44,19 @@ namespace Fplcs
             }
         }
 
-        Dictionary<TTokenType, PrecedenceNode> precedenceNodes = new Dictionary<TTokenType, PrecedenceNode>();
+        readonly Dictionary<TTokenType, PrecedenceNode> precedenceNodes = new Dictionary<TTokenType, PrecedenceNode>();
 
         PrecedenceNode createPrecedenceNode(TTokenType type)
         {
-            PrecedenceNode pn = new PrecedenceNode(type);
+            var pn = new PrecedenceNode(type);
             precedenceNodes.Add(type, pn);
             return pn;
         }
 
         public void AddPrecedenceRule(TTokenType firstType, TTokenType secondType)
         {
-            PrecedenceNode first = precedenceNodes.ContainsKey(firstType) ? precedenceNodes[firstType] : null;
-            PrecedenceNode second = precedenceNodes.ContainsKey(secondType) ? precedenceNodes[secondType] : null;
+            var first = precedenceNodes.ContainsKey(firstType) ? precedenceNodes[firstType] : null;
+            var second = precedenceNodes.ContainsKey(secondType) ? precedenceNodes[secondType] : null;
             if (first == null || second == null)
             {
                 first = first ?? createPrecedenceNode(firstType);

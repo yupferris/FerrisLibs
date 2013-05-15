@@ -10,7 +10,7 @@ namespace Fplcs
     {
         public class Token
         {
-            public TTokenType Type;
+            public readonly TTokenType Type;
             public Token(TTokenType type)
             {
                 Type = type;
@@ -21,9 +21,9 @@ namespace Fplcs
 
         class TokenDefinition
         {
-            public string Regex;
-            public RegexOptions RegexOptions;
-            public TokenCallback TokenCallback;
+            public readonly string Regex;
+            public readonly RegexOptions RegexOptions;
+            public readonly TokenCallback TokenCallback;
             public TokenDefinition(string regex, RegexOptions regexOptions, TokenCallback tokenCallback)
             {
                 Regex = regex;

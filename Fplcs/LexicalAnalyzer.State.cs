@@ -11,10 +11,10 @@ namespace Fplcs
         class State
         {
             public bool Accepting;
-            public TTokenType AcceptingTokenType;
+            public readonly TTokenType AcceptingTokenType;
 
-            public List<char> NextChars = new List<char>();
-            public List<State> NextStates = new List<State>();
+            public readonly List<char> NextChars = new List<char>();
+            public readonly List<State> NextStates = new List<State>();
 
             public int lastInputPos;
 
@@ -41,7 +41,7 @@ namespace Fplcs
             }
         }
 
-        List<State> states = new List<State>();
+        readonly List<State> states = new List<State>();
 
         State CreateState()
         {

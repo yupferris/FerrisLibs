@@ -28,8 +28,8 @@ namespace Fplcs
 
             public class AstNode
             {
-                public AstNodeType Type;
-                public List<AstNode> Children = new List<AstNode>();
+                public readonly AstNodeType Type;
+                public readonly List<AstNode> Children = new List<AstNode>();
                 public AstNode(AstNodeType type = AstNodeType.Default)
                 {
                     Type = type;
@@ -38,7 +38,7 @@ namespace Fplcs
 
             public class CharAstNode : AstNode
             {
-                public char Char;
+                public readonly char Char;
                 public CharAstNode(char c)
                     : base(AstNodeType.Char)
                 {
@@ -104,12 +104,12 @@ namespace Fplcs
 
             AstNode parseExpression()
             {
-                AstNode node = new AstNode();
+                var node = new AstNode();
 
                 while (inputPos < input.Length)
                 {
                     bool specialReturn = false;
-                    char currentChar = peekChar();
+                    var currentChar = peekChar();
                     switch (currentChar)
                     {
                         case '(':
@@ -137,7 +137,7 @@ namespace Fplcs
                             {
                                 if (node.Children.Count() == 0) throw new Exception("'" + currentChar + "' found with no preceeding expression");
                                 inputPos++;
-                                AstNode expression = node.Children[node.Children.Count - 1];
+                                var expression = node.Children[node.Children.Count - 1];
                                 node.Children.RemoveAt(node.Children.Count - 1);
                                 AstNode newNode;
                                 switch (currentChar)
@@ -159,11 +159,11 @@ namespace Fplcs
 
                                 bool negated = false;
 
-                                List<char> chars = new List<char>();
+                                var chars = new List<char>();
                                 bool complete = false;
                                 for (; inputPos < input.Length && !complete; inputPos++)
                                 {
-                                    char c = peekChar();
+                                    var c = peekChar();
                                     switch (c)
                                     {
                                         case ']':
@@ -175,8 +175,8 @@ namespace Fplcs
                                                 if (inputPos < input.Length - 1)
                                                 {
                                                     inputPos++;
-                                                    char startChar = chars[chars.Count - 1];
-                                                    char endChar = peekChar();
+                                                    var startChar = chars[chars.Count - 1];
+                                                    var endChar = peekChar();
                                                     if (endChar > startChar)
                                                     {
                                                         for (int i = startChar + 1; i <= endChar; i++)
@@ -213,7 +213,7 @@ namespace Fplcs
                                 if (chars.Count == 0) throw new Exception("Cannot use empty character classes");
 
                                 // TODO: Make special state type to handle character classes
-                                List<AstNode> charNodes = new List<AstNode>();
+                                var charNodes = new List<AstNode>();
                                 if (negated)
                                 {
                                     for (int i = 1; i < 256; i++)
@@ -225,7 +225,7 @@ namespace Fplcs
                                 {
                                     for (int i = 0; i < chars.Count; i++) charNodes.Add(new CharAstNode(chars[i]));
                                 }
-                                AstNode classNode = charNodes[0];
+                                var classNode = charNodes[0];
                                 for (int i = 1; i < charNodes.Count; i++) classNode = new OrAstNode(classNode, charNodes[i]);
                                 node.Children.Add(classNode);
                                 continue;
@@ -262,7 +262,7 @@ namespace Fplcs
                 inputPos++;
                 if (inputPos < input.Length)
                 {
-                    char c = peekChar();
+                    var c = peekChar();
                     switch (c)
                     {
                         case '\\':
@@ -310,7 +310,7 @@ namespace Fplcs
 
             char getNextChar()
             {
-                char ret = input[inputPos];
+                var ret = input[inputPos];
                 inputPos++;
                 return ret;
             }

@@ -26,6 +26,11 @@ namespace Fgl
 			if (i == 0xffff) throw FSL_EXCEPTION("Could not create new menu item");
 		}
 		checked = false;
+		toggleEnabled = false;
+		Click += [&]
+			{
+				if (toggleEnabled) SetChecked(!GetChecked());
+			};
 	}
 
 	Win32MenuItem::~Win32MenuItem()
@@ -42,6 +47,16 @@ namespace Fgl
 	bool Win32MenuItem::GetChecked() const
 	{
 		return checked;
+	}
+
+	void Win32MenuItem::SetToggleEnabled(bool toggleEnabled)
+	{
+		this->toggleEnabled = toggleEnabled;
+	}
+
+	bool Win32MenuItem::GetToggleEnabled() const
+	{
+		return toggleEnabled;
 	}
 
 	int Win32MenuItem::GetId() const

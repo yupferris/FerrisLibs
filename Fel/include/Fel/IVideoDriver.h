@@ -7,6 +7,7 @@ namespace Fel
 	{
 	public:
 		virtual ~IVideoDriver();
+
 		virtual void SetOutput(int width, int height, const unsigned int *data) = 0;
 	};
 }

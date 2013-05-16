@@ -15,6 +15,8 @@ namespace Fgl
 
 		virtual void SetChecked(bool checked);
 		virtual bool GetChecked() const;
+		virtual void SetToggleEnabled(bool toggleEnabled);
+		virtual bool GetToggleEnabled() const;
 
 		int GetId() const;
 
@@ -23,6 +25,7 @@ namespace Fgl
 
 		int id;
 		bool checked;
+		bool toggleEnabled;
 	};
 }
 

@@ -16,6 +16,8 @@ namespace Fgl
 
 		virtual void SetChecked(bool checked) = 0;
 		virtual bool GetChecked() const = 0;
+		virtual void SetToggleEnabled(bool toggleEnabled) = 0;
+		virtual bool GetToggleEnabled() const = 0;
 
 		Fsl::Event Click;
 		Fsl::Event CheckedChanged;

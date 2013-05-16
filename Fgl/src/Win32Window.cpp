@@ -83,6 +83,7 @@ namespace Fgl
 		RECT rect = { 0, 0, desiredWidth, desiredHeight };
 		AdjustWindowRect(&rect, nativeStyle, menu != nullptr);
 		SetWindowPos(handle, 0, 0, 0, rect.right - rect.left, rect.bottom - rect.top, SWP_NOMOVE | SWP_NOZORDER);
+		resetLayout();
 	}
 
 	void Win32Window::SetMenu(Menu *menu)

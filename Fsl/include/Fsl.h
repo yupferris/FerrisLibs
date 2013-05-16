@@ -13,5 +13,6 @@
 #include "Fsl/Time.h"
 #include "Fsl/Random.h"
 #include "Fsl/Event.h"
+#include "Fsl/Mutex.h"
 
 #endif

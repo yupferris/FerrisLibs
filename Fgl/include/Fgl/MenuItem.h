@@ -14,7 +14,11 @@ namespace Fgl
 
 		virtual ~MenuItem();
 
+		virtual void SetChecked(bool checked) = 0;
+		virtual bool GetChecked() const = 0;
+
 		Fsl::Event Click;
+		Fsl::Event CheckedChanged;
 
 	protected:
 		MenuItem(const Fsl::String& text);

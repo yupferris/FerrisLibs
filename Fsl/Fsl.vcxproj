@@ -20,6 +20,7 @@
     <ClInclude Include="include\Fsl\Forward.h" />
     <ClInclude Include="include\Fsl\Function.h" />
     <ClInclude Include="include\Fsl\List.h" />
+    <ClInclude Include="include\Fsl\Mutex.h" />
     <ClInclude Include="include\Fsl\Random.h" />
     <ClInclude Include="include\Fsl\Stack.h" />
     <ClInclude Include="include\Fsl\String.h" />
@@ -27,13 +28,16 @@
     <ClInclude Include="include\Fsl\Threading.h" />
     <ClInclude Include="include\Fsl\Time.h" />
     <ClInclude Include="include\Fsl\Win32Console.h" />
+    <ClInclude Include="include\Fsl\Win32Mutex.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Console.cpp" />
     <ClCompile Include="src\Exception.cpp" />
     <ClCompile Include="src\File.cpp" />
+    <ClCompile Include="src\Mutex.cpp" />
     <ClCompile Include="src\Random.cpp" />
     <ClCompile Include="src\Win32Console.cpp" />
+    <ClCompile Include="src\Win32Mutex.cpp" />
     <ClCompile Include="src\Win32Threading.cpp" />
     <ClCompile Include="src\Win32Time.cpp" />
   </ItemGroup>

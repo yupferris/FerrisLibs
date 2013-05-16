@@ -48,6 +48,10 @@ namespace Fgl
 		if (childItems.Contains(win32Child)) throw FSL_EXCEPTION("Menu already contains the given child");
 		if (!AppendMenu(handle, MF_STRING, (UINT_PTR)win32Child->GetId(), win32Child->GetText().GetData())) throw FSL_EXCEPTION("Could not add child to menu");
 		childItems.Add(win32Child);
+
+		auto childCheckedChanged = [=] { CheckMenuItem(handle, win32Child->GetId(), win32Child->GetChecked() ? MF_CHECKED : MF_UNCHECKED); };
+		win32Child->CheckedChanged += childCheckedChanged;
+		childCheckedChanged();
 	}
 
 	void Win32Menu::AddSeparator()

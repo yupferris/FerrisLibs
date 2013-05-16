@@ -25,11 +25,23 @@ namespace Fgl
 
 			if (i == 0xffff) throw FSL_EXCEPTION("Could not create new menu item");
 		}
+		checked = false;
 	}
 
 	Win32MenuItem::~Win32MenuItem()
 	{
 		ids.Remove(id);
+	}
+
+	void Win32MenuItem::SetChecked(bool checked)
+	{
+		this->checked = checked;
+		CheckedChanged();
+	}
+
+	bool Win32MenuItem::GetChecked() const
+	{
+		return checked;
 	}
 
 	int Win32MenuItem::GetId() const

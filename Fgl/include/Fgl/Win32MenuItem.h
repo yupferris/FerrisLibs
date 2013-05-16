@@ -13,12 +13,16 @@ namespace Fgl
 		Win32MenuItem(const Fsl::String& text);
 		virtual ~Win32MenuItem();
 
+		virtual void SetChecked(bool checked);
+		virtual bool GetChecked() const;
+
 		int GetId() const;
 
 	private:
 		static Fsl::List<int> ids;
 
 		int id;
+		bool checked;
 	};
 }
 

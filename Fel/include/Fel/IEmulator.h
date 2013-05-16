@@ -1,7 +1,7 @@
 #ifndef __FEL_IEMULATOR_H__
 #define __FEL_IEMULATOR_H__
 
-#include "IVideoModule.h"
+#include "IVideoDriver.h"
 
 namespace Fel
 {
@@ -14,7 +14,7 @@ namespace Fel
 		virtual int GetOutputWidth() const = 0;
 		virtual int GetOutputHeight() const = 0;
 
-		virtual void SetVideoModule(IVideoModule *videoModule) = 0;
+		virtual void SetVideoDriver(IVideoDriver *videoDriver) = 0;
 	};
 }
 

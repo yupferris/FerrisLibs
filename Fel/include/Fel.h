@@ -5,6 +5,6 @@
 #include "Fel/IEmulator32.h"
 #include "Fel/ICpu.h"
 #include "Fel/Cpu32.h"
-#include "Fel/IVideoModule.h"
+#include "Fel/IVideoDriver.h"
 
 #endif

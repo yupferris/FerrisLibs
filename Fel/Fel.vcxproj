@@ -16,11 +16,11 @@
     <ClInclude Include="include\Fel\Cpu32.h" />
     <ClInclude Include="include\Fel\IEmulator.h" />
     <ClInclude Include="include\Fel\IEmulator32.h" />
-    <ClInclude Include="include\Fel\IVideoModule.h" />
+    <ClInclude Include="include\Fel\IVideoDriver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\src\Cpu32.cpp" />
-    <ClCompile Include="src\IVideoModule.cpp" />
+    <ClCompile Include="src\IVideoDriver.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and '$(VisualStudioVersion)' == ''">$(VCTargetsPath11)</VCTargetsPath>

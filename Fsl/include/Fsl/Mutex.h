@@ -6,7 +6,7 @@ namespace Fsl
 	class Mutex
 	{
 	public:
-		Mutex *Create();
+		static Mutex *Create();
 
 		virtual ~Mutex();
 

@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Fel.h" />
+    <ClInclude Include="include\Fel\IAudioDriver.h" />
     <ClInclude Include="include\Fel\ICpu.h" />
     <ClInclude Include="include\Fel\Cpu32.h" />
     <ClInclude Include="include\Fel\IEmulator.h" />
@@ -20,6 +21,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\src\Cpu32.cpp" />
+    <ClCompile Include="src\IAudioDriver.cpp" />
     <ClCompile Include="src\IVideoDriver.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

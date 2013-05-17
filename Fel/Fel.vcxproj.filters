@@ -17,6 +17,9 @@
     <ClInclude Include="include\Fel\IVideoDriver.h">
       <Filter>Fel</Filter>
     </ClInclude>
+    <ClInclude Include="include\Fel\IAudioDriver.h">
+      <Filter>Fel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Fel">
@@ -28,6 +31,9 @@
       <Filter>Fel</Filter>
     </ClCompile>
     <ClCompile Include="src\IVideoDriver.cpp">
+      <Filter>Fel</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IAudioDriver.cpp">
       <Filter>Fel</Filter>
     </ClCompile>
   </ItemGroup>

@@ -2,6 +2,7 @@
 #define __FEL_IEMULATOR_H__
 
 #include "IVideoDriver.h"
+#include "IAudioDriver.h"
 
 namespace Fel
 {
@@ -15,6 +16,7 @@ namespace Fel
 		virtual int GetOutputHeight() const = 0;
 
 		virtual void SetVideoDriver(IVideoDriver *videoDriver) = 0;
+		virtual void SetAudioDriver(IAudioDriver *audioDriver) = 0;
 	};
 }
 

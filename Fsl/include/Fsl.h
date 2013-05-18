@@ -9,6 +9,7 @@
 #include "Fsl/Function.h"
 #include "Fsl/Console.h"
 #include "Fsl/File.h"
+#include "Fsl/Directory.h"
 #include "Fsl/Threading.h"
 #include "Fsl/Time.h"
 #include "Fsl/Random.h"

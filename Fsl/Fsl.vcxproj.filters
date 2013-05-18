@@ -61,6 +61,9 @@
     <ClInclude Include="include\Fsl\Mutex.h">
       <Filter>Fsl</Filter>
     </ClInclude>
+    <ClInclude Include="include\Fsl\Directory.h">
+      <Filter>Fsl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Exception.cpp">
@@ -88,6 +91,9 @@
       <Filter>Fsl</Filter>
     </ClCompile>
     <ClCompile Include="src\Win32Mutex.cpp">
+      <Filter>Fsl\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Win32Directory.cpp">
       <Filter>Fsl\Win32</Filter>
     </ClCompile>
   </ItemGroup>

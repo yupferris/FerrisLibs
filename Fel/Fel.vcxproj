@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Fel.h" />
+    <ClInclude Include="include\Fel\AudioDriverFactory.h" />
     <ClInclude Include="include\Fel\IAudioDriver.h" />
     <ClInclude Include="include\Fel\ICpu.h" />
     <ClInclude Include="include\Fel\Cpu32.h" />
@@ -19,12 +20,15 @@
     <ClInclude Include="include\Fel\IEmulator32.h" />
     <ClInclude Include="include\Fel\IVideoDriver.h" />
     <ClInclude Include="include\Fel\VideoDriverFactory.h" />
+    <ClInclude Include="include\Fel\Win32DirectSoundAudioDriver.h" />
     <ClInclude Include="include\Fel\Win32GLVideoDriver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\src\Cpu32.cpp" />
     <ClCompile Include="src\IAudioDriver.cpp" />
     <ClCompile Include="src\IVideoDriver.cpp" />
+    <ClCompile Include="src\Win32AudioDriverFactory.cpp" />
+    <ClCompile Include="src\Win32DirectSoundAudioDriver.cpp" />
     <ClCompile Include="src\Win32GLVideoDriver.cpp" />
     <ClCompile Include="src\Win32VideoDriverFactory.cpp" />
   </ItemGroup>
@@ -80,7 +84,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>OpenGL32.lib</AdditionalDependencies>
+      <AdditionalDependencies>OpenGL32.lib;dsound.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -100,7 +104,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>OpenGL32.lib</AdditionalDependencies>
+      <AdditionalDependencies>OpenGL32.lib;dsound.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

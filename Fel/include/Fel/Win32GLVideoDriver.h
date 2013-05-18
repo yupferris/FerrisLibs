@@ -1,7 +1,8 @@
 #ifndef __FEL_WIN32GLVIDEODRIVER_H__
 #define __FEL_WIN32GLVIDEODRIVER_H__
 
-#include <Fel/IVideoDriver.h>
+#include "IVideoDriver.h"
+
 #include <Fgl.h>
 #include <Fgl/Win32Viewport.h>
 

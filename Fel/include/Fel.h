@@ -8,5 +8,6 @@
 #include "Fel/IVideoDriver.h"
 #include "Fel/VideoDriverFactory.h"
 #include "Fel/IAudioDriver.h"
+#include "Fel/AudioDriverFactory.h"
 
 #endif

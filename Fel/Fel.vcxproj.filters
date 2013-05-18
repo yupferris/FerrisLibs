@@ -20,10 +20,19 @@
     <ClInclude Include="include\Fel\IAudioDriver.h">
       <Filter>Fel</Filter>
     </ClInclude>
+    <ClInclude Include="include\Fel\VideoDriverFactory.h">
+      <Filter>Fel</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Fel\Win32GLVideoDriver.h">
+      <Filter>Fel\Win32</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Fel">
       <UniqueIdentifier>{d6ac5784-3f19-4f7f-9285-33d081a1f2d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fel\Win32">
+      <UniqueIdentifier>{cb1c34fd-2376-463f-ab33-bfcda2b0a860}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -35,6 +44,12 @@
     </ClCompile>
     <ClCompile Include="src\IAudioDriver.cpp">
       <Filter>Fel</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Win32VideoDriverFactory.cpp">
+      <Filter>Fel\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Win32GLVideoDriver.cpp">
+      <Filter>Fel\Win32</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

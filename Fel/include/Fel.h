@@ -6,6 +6,7 @@
 #include "Fel/ICpu.h"
 #include "Fel/Cpu32.h"
 #include "Fel/IVideoDriver.h"
+#include "Fel/VideoDriverFactory.h"
 #include "Fel/IAudioDriver.h"
 
 #endif

@@ -24,6 +24,13 @@ namespace Fsl
 		outputFile.close();
 	}
 
+	List<String> File::ReadAllLines(const String& path)
+	{
+		auto ret = ReadAllText(path).Split('\n');
+		for (int i = 0; i < ret.Count(); i++) ret[i] = ret[i].Trim();
+		return ret;
+	}
+
 	List<unsigned char> File::ReadAllBytes(const String& path)
 	{
 		ifstream inputFile(path.GetData(), ios::binary | ios::ate);

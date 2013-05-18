@@ -1,11 +1,10 @@
 #ifndef __FSL_STRINGDECL_H__
 #define __FSL_STRINGDECL_H__
 
-#include <istream>
-#include <ostream>
-
 namespace Fsl
 {
+	template <typename T> class List;
+
 	template <typename T> class Stringt
 	{
 	public:
@@ -61,10 +60,16 @@ namespace Fsl
 		Stringt Substring(int startPos) const;
 		Stringt Substring(int startPos, int len) const;
 		int LastIndexOf(T c) const;
-
+		List<Stringt> Split(T c) const;
 		Stringt ToLower() const;
+		Stringt Trim() const;
+
+		bool TryParseInt(int& value) const;
 
 	private:
+		static bool isWhitespace(T c);
+		static bool isDigit(T c);
+
 		void init(long long l);
 		void init(double d, int decimalPlaces);
 

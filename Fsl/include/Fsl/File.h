@@ -12,6 +12,8 @@ namespace Fsl
 		static String ReadAllText(const String& path);
 		static void WriteAllText(const String& path, const String& text);
 
+		static List<String> ReadAllLines(const String& path);
+
 		static List<unsigned char> ReadAllBytes(const String& path);
 		static void WriteAllBytes(const String& path, const List<unsigned char>& bytes);
 

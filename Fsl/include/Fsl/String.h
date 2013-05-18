@@ -3,6 +3,7 @@
 
 #include "StringDecl.h"
 #include "Exception.h"
+#include "List.h"
 
 namespace Fsl
 {
@@ -277,9 +278,9 @@ namespace Fsl
 		auto length = Length();
 		if (len < 0 || len > length) throw FSL_EXCEPTION("Invalid length specified");
 		if (startPos + len > length) throw FSL_EXCEPTION("Invalid starting position and length specified");
-		Stringt<T> s;
-		s.stringData = new StringData(stringData->Data + startPos, len);
-		return s;
+		Stringt<T> ret;
+		if (len - startPos) ret.stringData = new StringData(stringData->Data + startPos, len);
+		return ret;
 	}
 
 	template <typename T> int Stringt<T>::LastIndexOf(T c) const
@@ -293,6 +294,26 @@ namespace Fsl
 		return i;
 	}
 
+	template <typename T> List<Stringt<T>> Stringt<T>::Split(T c) const
+	{
+		List<Stringt<T>> ret;
+		if (stringData)
+		{
+			int startPos = 0;
+			int pos;
+			for (pos = startPos; pos < Length(); pos++)
+			{
+				if (stringData->Data[pos] == c)
+				{
+					ret.Add(Substring(startPos, pos - startPos));
+					startPos = pos + 1;
+				}
+			}
+			if (startPos < Length()) ret.Add(Substring(startPos, pos - startPos));
+		}
+		return ret;
+	}
+
 	template <typename T> Stringt<T> Stringt<T>::ToLower() const
 	{
 		auto ret = *this;
@@ -302,6 +323,43 @@ namespace Fsl
 			if (c >= 'A' && c <= 'Z') ret[i] = c - 'A' + 'a';
 		}
 		return ret;
+	}
+
+	template <typename T> Stringt<T> Stringt<T>::Trim() const
+	{
+		if (!stringData) return *this;
+		int startPos = 0;
+		int endPos = Length() - 1;
+		while (startPos < Length() && isWhitespace(stringData->Data[startPos])) startPos++;
+		while (endPos > 0 && isWhitespace(stringData->Data[endPos])) endPos--;
+		return Substring(startPos, endPos + 1 - startPos);
+	}
+
+	template <typename T> bool Stringt<T>::TryParseInt(int& value) const
+	{
+		if (!stringData) return false;
+		value = 0;
+		for (int i = 0; i < Length(); i++)
+		{
+			auto c = stringData->Data[i];
+			if (!isDigit(c)) return false;
+			value = value * 10 + (c - '0');
+		}
+		return true;
+	}
+
+	template <typename T> bool Stringt<T>::isWhitespace(T c)
+	{
+		return
+			c == ' ' ||
+			c == '\t' ||
+			c == '\r' ||
+			c == '\n';
+	}
+
+	template <typename T> bool Stringt<T>::isDigit(T c)
+	{
+		return c >= '0' && c <= '9';
 	}
 
 	template <typename T> void Stringt<T>::init(long long l)

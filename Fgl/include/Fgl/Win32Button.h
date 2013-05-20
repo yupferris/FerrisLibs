@@ -11,7 +11,7 @@ namespace Fgl
 	class Win32Button : public Button, public IWin32HandleCommandMessage
 	{
 	public:
-		Win32Button();
+		Win32Button(const Fsl::String& text);
 		virtual ~Win32Button();
 
 		virtual void SetParent(IWidgetParent *parent);

@@ -4,7 +4,8 @@ using namespace Fsl;
 
 namespace Fgl
 {
-	Button::Button(const Fsl::String& text)
+	Button::Button(const Fsl::String& text, int x, int y, int desiredWidth, int desiredHeight)
+		: Widget(x, y, desiredWidth, desiredHeight)
 	{
 		this->text = text;
 	}

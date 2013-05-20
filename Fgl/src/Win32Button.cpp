@@ -6,13 +6,13 @@ using namespace Fsl;
 
 namespace Fgl
 {
-	Button *Button::Create(const String& text)
+	Button *Button::Create(const String& text, int x, int y, int desiredWidth, int desiredHeight)
 	{
-		return new Win32Button(text);
+		return new Win32Button(text, x, y, desiredWidth, desiredHeight);
 	}
 
-	Win32Button::Win32Button(const String& text)
-		: Button(text)
+	Win32Button::Win32Button(const String& text, int x, int y, int desiredWidth, int desiredHeight)
+		: Button(text, x, y, desiredWidth, desiredHeight)
 	{
 		handle = NULL;
 	}
@@ -32,7 +32,7 @@ namespace Fgl
 			id = Win32Controls::GetNewId();
 			auto parentHandle = (HWND)parent->GetNativeHandle();
 			handle = CreateWindow("BUTTON", GetText().GetData(), WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON, GetDesiredX(), GetDesiredY(), GetDesiredWidth(), GetDesiredHeight(), parentHandle, (HMENU)id, GetModuleHandle(NULL), this);
-			SendDlgItemMessage(parentHandle, id, WM_SETFONT, (WPARAM)GetStockObject(DEFAULT_GUI_FONT), MAKELPARAM(TRUE, 0));
+			Win32Controls::SetDefaultFont(parentHandle, id);
 		}
 	}
 

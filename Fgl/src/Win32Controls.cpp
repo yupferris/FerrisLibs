@@ -2,7 +2,6 @@
 
 using namespace Fsl;
 
-#include <Windows.h>
 #include <CommCtrl.h>
 
 #pragma comment(linker, "\"/manifestdependency:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
@@ -38,5 +37,10 @@ namespace Fgl
 	void Win32Controls::RemoveId(int id)
 	{
 		ids.Remove(id);
+	}
+
+	void Win32Controls::SetDefaultFont(HWND parentHandle, int id)
+	{
+		SendDlgItemMessage(parentHandle, id, WM_SETFONT, (WPARAM)GetStockObject(DEFAULT_GUI_FONT), MAKELPARAM(TRUE, 0));
 	}
 }

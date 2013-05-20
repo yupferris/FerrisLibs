@@ -10,6 +10,7 @@ namespace Fgl
 	class Widget
 	{
 	public:
+		Widget(int x, int y, int width, int height);
 		Widget();
 
 		virtual int GetDesiredX() const;
@@ -32,6 +33,8 @@ namespace Fgl
 		virtual void SetParent(IWidgetParent *parent);
 
 	private:
+		void init(int x, int y, int width, int height);
+
 		int desiredX, desiredY;
 		int desiredWidth, desiredHeight;
 		int x, y;

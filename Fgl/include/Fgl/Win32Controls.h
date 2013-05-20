@@ -3,14 +3,19 @@
 
 #include <Fsl.h>
 
+#include <Windows.h>
+
 namespace Fgl
 {
 	class Win32Controls
 	{
 	public:
 		static void Init();
+
 		static int GetNewId();
 		static void RemoveId(int id);
+
+		static void SetDefaultFont(HWND parentHandle, int id);
 
 	private:
 		static bool initialized;

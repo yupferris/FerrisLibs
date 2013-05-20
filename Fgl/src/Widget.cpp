@@ -3,11 +3,14 @@
 
 namespace Fgl
 {
+	Widget::Widget(int x, int y, int width, int height)
+	{
+		init(x, y, width, height);
+	}
+
 	Widget::Widget()
 	{
-		desiredX = desiredY = x = y = 0;
-		desiredWidth = desiredHeight = width = height = 20;
-		parent = nullptr;
+		init(0, 0, 20, 20);
 	}
 
 	int Widget::GetDesiredX() const
@@ -82,5 +85,14 @@ namespace Fgl
 	void Widget::SetParent(IWidgetParent *parent)
 	{
 		this->parent = parent;
+	}
+
+	void Widget::init(int x, int y, int width, int height)
+	{
+		desiredX = this->x = x;
+		desiredY = this->y = y;
+		desiredWidth = this->width = width;
+		desiredHeight = this->height = height;
+		parent = nullptr;
 	}
 }

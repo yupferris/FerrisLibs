@@ -32,7 +32,6 @@ namespace Fgl
 		virtual void SetContent(Widget *widget);
 		virtual Widget *GetContent() const;
 
-		Fsl::Event2<int, int> SizeChanged;
 		Fsl::Event1<Key> KeyDown;
 		Fsl::Event1<Key> KeyUp;
 		Fsl::Event Closing;

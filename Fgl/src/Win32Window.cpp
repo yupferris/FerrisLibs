@@ -131,7 +131,6 @@ namespace Fgl
 		case WM_SIZE:
 			width = LOWORD(lParam);
 			height = HIWORD(lParam);
-			SizeChanged(width, height);
 			resetLayout();
 			break;
 

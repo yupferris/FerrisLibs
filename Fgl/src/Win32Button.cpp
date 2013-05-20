@@ -31,7 +31,7 @@ namespace Fgl
 			Win32Controls::Init();
 			id = Win32Controls::GetNewId();
 			auto parentHandle = (HWND)parent->GetNativeHandle();
-			handle = CreateWindow("BUTTON", GetText().GetData(), WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON, GetDesiredX(), GetDesiredY(), GetDesiredWidth(), GetDesiredHeight(), parentHandle, (HMENU)id, GetModuleHandle(NULL), this);
+			handle = CreateWindow("BUTTON", GetText().GetData(), WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON, GetDesiredX(), GetDesiredY(), GetDesiredWidth(), GetDesiredHeight(), parentHandle, (HMENU)id, GetModuleHandle(NULL), this);
 			SendDlgItemMessage(parentHandle, id, WM_SETFONT, (WPARAM)GetStockObject(DEFAULT_GUI_FONT), MAKELPARAM(TRUE, 0));
 		}
 	}

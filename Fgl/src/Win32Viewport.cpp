@@ -49,11 +49,7 @@ namespace Fgl
 	{
 		destroyWindow();
 		Widget::SetParent(parent);
-		if (parent)
-		{
-			handle = CreateWindow(className.GetData(), "Viewport", WS_CHILD, GetDesiredX(), GetDesiredY(), GetDesiredWidth(), GetDesiredHeight(), (HWND)parent->GetNativeHandle(), NULL, GetModuleHandle(NULL), this);
-			ShowWindow(handle, SW_SHOWNORMAL);
-		}
+		if (parent) handle = CreateWindow(className.GetData(), "Viewport", WS_VISIBLE | WS_CHILD, GetDesiredX(), GetDesiredY(), GetDesiredWidth(), GetDesiredHeight(), (HWND)parent->GetNativeHandle(), NULL, GetModuleHandle(NULL), this);
 	}
 
 	void Win32Viewport::SetPos(int x, int y)
@@ -71,6 +67,10 @@ namespace Fgl
 	HWND Win32Viewport::GetHandle() const
 	{
 		return handle;
+	}
+
+	void Win32Viewport::HandleCommandMessage(LPARAM wParam)
+	{
 	}
 
 	void Win32Viewport::layoutChanged()

@@ -12,7 +12,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Fgl.h" />
+    <ClInclude Include="include\Fgl\Button.h" />
     <ClInclude Include="include\Fgl\DialogWindow.h" />
+    <ClInclude Include="include\Fgl\IWin32HandleCommandMessage.h" />
     <ClInclude Include="include\Fgl\Key.h" />
     <ClInclude Include="include\Fgl\Menu.h" />
     <ClInclude Include="include\Fgl\MenuChild.h" />
@@ -21,6 +23,8 @@
     <ClInclude Include="include\Fgl\Viewport.h" />
     <ClInclude Include="include\Fgl\Widget.h" />
     <ClInclude Include="include\Fgl\IWidgetParent.h" />
+    <ClInclude Include="include\Fgl\Win32Button.h" />
+    <ClInclude Include="include\Fgl\Win32Controls.h" />
     <ClInclude Include="include\Fgl\Win32Menu.h" />
     <ClInclude Include="include\Fgl\Win32MenuItem.h" />
     <ClInclude Include="include\Fgl\Win32MessageWindow.h" />
@@ -29,11 +33,14 @@
     <ClInclude Include="include\Fgl\Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Button.cpp" />
     <ClCompile Include="src\Menu.cpp" />
     <ClCompile Include="src\MenuChild.cpp" />
     <ClCompile Include="src\MenuItem.cpp" />
     <ClCompile Include="src\Viewport.cpp" />
     <ClCompile Include="src\Widget.cpp" />
+    <ClCompile Include="src\Win32Button.cpp" />
+    <ClCompile Include="src\Win32Controls.cpp" />
     <ClCompile Include="src\Win32DialogWindow.cpp" />
     <ClCompile Include="src\Win32Menu.cpp" />
     <ClCompile Include="src\Win32MenuItem.cpp" />
@@ -94,7 +101,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>FslD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>FslD.lib;Comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -114,7 +121,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>Fsl.lib</AdditionalDependencies>
+      <AdditionalDependencies>Fsl.lib;Comctl32.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,4 +1,5 @@
 #include <Fgl/Win32MenuItem.h>
+#include <Fgl/Win32Controls.h>
 
 using namespace Fsl;
 
@@ -9,22 +10,10 @@ namespace Fgl
 		return new Win32MenuItem(text);
 	}
 
-	List<int> Win32MenuItem::ids;
-
 	Win32MenuItem::Win32MenuItem(const String& text)
 		: MenuItem(text)
 	{
-		for (int i = 0; ; i++)
-		{
-			if (!ids.Contains(i))
-			{
-				id = i;
-				ids.Add(i);
-				break;
-			}
-
-			if (i == 0xffff) throw FSL_EXCEPTION("Could not create new menu item");
-		}
+		id = Win32Controls::GetNewId();
 		checked = false;
 		toggleEnabled = false;
 		Click += [&]
@@ -35,7 +24,7 @@ namespace Fgl
 
 	Win32MenuItem::~Win32MenuItem()
 	{
-		ids.Remove(id);
+		Win32Controls::RemoveId(id);
 	}
 
 	void Win32MenuItem::SetChecked(bool checked)

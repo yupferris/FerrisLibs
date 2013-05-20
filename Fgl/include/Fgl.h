@@ -11,5 +11,6 @@
 #include "Fgl/Widget.h"
 #include "Fgl/IWidgetParent.h"
 #include "Fgl/Viewport.h"
+#include "Fgl/Button.h"
 
 #endif

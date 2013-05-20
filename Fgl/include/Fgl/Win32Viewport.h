@@ -2,12 +2,13 @@
 #define __FGL_WIN32VIEWPORT_H__
 
 #include "Viewport.h"
+#include "IWin32HandleCommandMessage.h"
 
 #include <Windows.h>
 
 namespace Fgl
 {
-	class Win32Viewport : public Viewport
+	class Win32Viewport : public Viewport, public IWin32HandleCommandMessage
 	{
 	public:
 		Win32Viewport();
@@ -19,6 +20,8 @@ namespace Fgl
 		virtual void SetSize(int width, int height);
 
 		HWND GetHandle() const;
+
+		virtual void HandleCommandMessage(LPARAM wParam);
 
 	private:
 		void layoutChanged();

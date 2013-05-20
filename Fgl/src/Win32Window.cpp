@@ -1,4 +1,5 @@
 #include <Fgl/Win32Window.h>
+#include <Fgl/IWin32HandleCommandMessage.h>
 
 using namespace Fsl;
 
@@ -147,7 +148,11 @@ namespace Fgl
 			break;
 
 		case WM_COMMAND:
-			if (menu) menu->HandleCommandMessage(wParam);
+			{
+				if (menu) menu->HandleCommandMessage(wParam);
+				auto content = GetContent();
+				if (content) dynamic_cast<IWin32HandleCommandMessage *>(content)->HandleCommandMessage(wParam);
+			}
 			break;
 
 		default:

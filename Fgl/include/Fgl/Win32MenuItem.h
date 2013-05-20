@@ -21,8 +21,6 @@ namespace Fgl
 		int GetId() const;
 
 	private:
-		static Fsl::List<int> ids;
-
 		int id;
 		bool checked;
 		bool toggleEnabled;

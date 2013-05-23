@@ -25,7 +25,7 @@ namespace Fgl
 		{
 			WNDCLASSEX wndClass =
 			{
-				sizeof(WNDCLASSEX),
+				sizeof(wndClass),
 				0,
 				wndProcRouter,
 				0, 0,

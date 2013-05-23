@@ -17,6 +17,8 @@ namespace Fel
 
 		virtual void SetVideoDriver(IVideoDriver *videoDriver) = 0;
 		virtual void SetAudioDriver(IAudioDriver *audioDriver) = 0;
+
+		virtual void CpuCyclesCallback(int numCycles) = 0;
 	};
 }
 

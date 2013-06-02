@@ -2,6 +2,7 @@
 #define __FSL_H__
 
 #include "Fsl/Exception.h"
+#include "Fsl/NotSupportedException.h"
 #include "Fsl/String.h"
 #include "Fsl/List.h"
 #include "Fsl/Dictionary.h"
@@ -15,5 +16,6 @@
 #include "Fsl/Random.h"
 #include "Fsl/Event.h"
 #include "Fsl/Mutex.h"
+#include "Fsl/Stream.h"
 
 #endif

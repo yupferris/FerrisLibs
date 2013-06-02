@@ -9,6 +9,7 @@ namespace Fsl
 	{
 	public:
 		Exception(const String& msg, const String& file, int line);
+
 		String GetMsg() const;
 		String GetFile() const;
 		int GetLine() const;

@@ -64,6 +64,12 @@
     <ClInclude Include="include\Fsl\Directory.h">
       <Filter>Fsl</Filter>
     </ClInclude>
+    <ClInclude Include="include\Fsl\Stream.h">
+      <Filter>Fsl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Fsl\NotSupportedException.h">
+      <Filter>Fsl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Exception.cpp">
@@ -95,6 +101,12 @@
     </ClCompile>
     <ClCompile Include="src\Win32Directory.cpp">
       <Filter>Fsl\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Stream.cpp">
+      <Filter>Fsl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NotSupportedException.cpp">
+      <Filter>Fsl</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

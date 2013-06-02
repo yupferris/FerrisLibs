@@ -15,12 +15,14 @@
     <ClInclude Include="include\Fsl\Console.h" />
     <ClInclude Include="include\Fsl\Dictionary.h" />
     <ClInclude Include="include\Fsl\Directory.h" />
+    <ClInclude Include="include\Fsl\EndOfStreamException.h" />
     <ClInclude Include="include\Fsl\Event.h" />
     <ClInclude Include="include\Fsl\Exception.h" />
     <ClInclude Include="include\Fsl\File.h" />
     <ClInclude Include="include\Fsl\Forward.h" />
     <ClInclude Include="include\Fsl\Function.h" />
     <ClInclude Include="include\Fsl\List.h" />
+    <ClInclude Include="include\Fsl\MemoryStream.h" />
     <ClInclude Include="include\Fsl\Mutex.h" />
     <ClInclude Include="include\Fsl\NotSupportedException.h" />
     <ClInclude Include="include\Fsl\Random.h" />
@@ -35,8 +37,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Console.cpp" />
+    <ClCompile Include="src\EndOfStreamException.cpp" />
     <ClCompile Include="src\Exception.cpp" />
     <ClCompile Include="src\File.cpp" />
+    <ClCompile Include="src\MemoryStream.cpp" />
     <ClCompile Include="src\Mutex.cpp" />
     <ClCompile Include="src\NotSupportedException.cpp" />
     <ClCompile Include="src\Random.cpp" />

@@ -3,6 +3,7 @@
 
 #include "Fsl/Exception.h"
 #include "Fsl/NotSupportedException.h"
+#include "Fsl/EndOfStreamException.h"
 #include "Fsl/String.h"
 #include "Fsl/List.h"
 #include "Fsl/Dictionary.h"
@@ -17,5 +18,6 @@
 #include "Fsl/Event.h"
 #include "Fsl/Mutex.h"
 #include "Fsl/Stream.h"
+#include "Fsl/MemoryStream.h"
 
 #endif

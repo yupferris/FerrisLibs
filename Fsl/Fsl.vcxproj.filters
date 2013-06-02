@@ -70,6 +70,12 @@
     <ClInclude Include="include\Fsl\NotSupportedException.h">
       <Filter>Fsl</Filter>
     </ClInclude>
+    <ClInclude Include="include\Fsl\MemoryStream.h">
+      <Filter>Fsl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Fsl\EndOfStreamException.h">
+      <Filter>Fsl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Exception.cpp">
@@ -106,6 +112,12 @@
       <Filter>Fsl</Filter>
     </ClCompile>
     <ClCompile Include="src\NotSupportedException.cpp">
+      <Filter>Fsl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MemoryStream.cpp">
+      <Filter>Fsl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EndOfStreamException.cpp">
       <Filter>Fsl</Filter>
     </ClCompile>
   </ItemGroup>

@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Fsl.h" />
+    <ClInclude Include="include\Fsl\BinaryReader.h" />
     <ClInclude Include="include\Fsl\Console.h" />
     <ClInclude Include="include\Fsl\Dictionary.h" />
     <ClInclude Include="include\Fsl\Directory.h" />
@@ -36,6 +37,7 @@
     <ClInclude Include="include\Fsl\Win32Mutex.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\BinaryReader.cpp" />
     <ClCompile Include="src\Console.cpp" />
     <ClCompile Include="src\EndOfStreamException.cpp" />
     <ClCompile Include="src\Exception.cpp" />

@@ -19,6 +19,7 @@
 #include "Fsl/Mutex.h"
 #include "Fsl/Stream.h"
 #include "Fsl/MemoryStream.h"
+#include "Fsl/FileStream.h"
 #include "Fsl/BinaryReader.h"
 
 #endif

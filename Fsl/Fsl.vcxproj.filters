@@ -79,6 +79,9 @@
     <ClInclude Include="include\Fsl\BinaryReader.h">
       <Filter>Fsl</Filter>
     </ClInclude>
+    <ClInclude Include="include\Fsl\FileStream.h">
+      <Filter>Fsl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Exception.cpp">
@@ -124,6 +127,9 @@
       <Filter>Fsl</Filter>
     </ClCompile>
     <ClCompile Include="src\BinaryReader.cpp">
+      <Filter>Fsl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FileStream.cpp">
       <Filter>Fsl</Filter>
     </ClCompile>
   </ItemGroup>

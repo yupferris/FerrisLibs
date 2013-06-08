@@ -11,7 +11,8 @@ namespace Fsl
 	public:
 		enum class FileMode
 		{
-			Open,
+			OpenRead,
+			OpenWrite,
 		};
 
 		FileStream(const String& fileName, FileMode fileMode);

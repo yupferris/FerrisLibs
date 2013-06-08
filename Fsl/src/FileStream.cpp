@@ -110,7 +110,7 @@ namespace Fsl
 
 	FileStream::FileStream(const String& fileName, FileMode fileMode)
 	{
-		internalStream = fileMode == FileMode::Open ? (Stream *)new ReadOnlyFileStream(fileName) : new WriteOnlyFileStream(fileName);
+		internalStream = fileMode == FileMode::OpenRead ? (Stream *)new ReadOnlyFileStream(fileName) : new WriteOnlyFileStream(fileName);
 	}
 
 	FileStream::~FileStream()

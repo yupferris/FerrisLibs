@@ -44,8 +44,15 @@ namespace Fsl
 		for (int i = 0; i < count; i++) WriteByte(buffer[offset + i]);
 	}
 
-	void Stream::CopyTo(Stream *dest)
+	void Stream::CopyTo(Stream *dest, int bufferSize)
 	{
-		while (GetPosition() < Length()) dest->WriteByte(ReadByte());
+		auto buffer = new unsigned char[bufferSize];
+		int bytesRead;
+		do
+		{
+			bytesRead = Read(buffer, 0, bufferSize);
+			dest->Write(buffer, 0, bytesRead);
+		} while (bytesRead == bufferSize);
+		delete [] buffer;
 	}
 }

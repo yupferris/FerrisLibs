@@ -22,7 +22,7 @@ namespace Fsl
 		virtual void WriteByte(unsigned char byte);
 		virtual void Write(const unsigned char *buffer, int offset, int count);
 
-		void CopyTo(Stream *dest);
+		void CopyTo(Stream *dest, int bufferSize = 4096);
 	};
 }
 

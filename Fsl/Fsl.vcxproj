@@ -13,6 +13,8 @@
   <ItemGroup>
     <ClInclude Include="include\Fsl.h" />
     <ClInclude Include="include\Fsl\BinaryReader.h" />
+    <ClInclude Include="include\Fsl\BitOrder.h" />
+    <ClInclude Include="include\Fsl\BitReader.h" />
     <ClInclude Include="include\Fsl\Console.h" />
     <ClInclude Include="include\Fsl\Dictionary.h" />
     <ClInclude Include="include\Fsl\Directory.h" />
@@ -39,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BinaryReader.cpp" />
+    <ClCompile Include="src\BitReader.cpp" />
     <ClCompile Include="src\Console.cpp" />
     <ClCompile Include="src\EndOfStreamException.cpp" />
     <ClCompile Include="src\Exception.cpp" />

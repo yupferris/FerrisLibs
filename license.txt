@@ -1,14 +1,14 @@
-            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
-                    Version 2, December 2004
+                  DO WHAT THE FUCK YOU WANT TO
+   AND DON'T BLAME ME IF IT DOESN'T FUCKING WORK PUBLIC LICENSE
+                      Version 1, June 2013
 
- Copyright (C) 2004 Sam Hocevar <sam@hocevar.net>
+ Copyright (C) 2013 Jake "Ferris" Taylor <yupferris@gmail.com>
 
- Everyone is permitted to copy and distribute verbatim or modified
- copies of this license document, and changing it is allowed as long
- as the name is changed.
+ This software is provided 'as-is', without any express or implied
+ warranty. In no event will the author(s) be held liable for any
+ damages arising from the use and/or misuse of this software.
 
-            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
-   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+ TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
 
-  0. You just DO WHAT THE FUCK YOU WANT TO.
-
+  0. DO WHAT THE FUCK YOU WANT TO, as long as you:
+  1. DON'T BLAME ME IF IT DOESN'T FUCKING WORK.

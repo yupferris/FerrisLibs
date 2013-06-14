@@ -2,7 +2,13 @@
 
 using namespace Fsl;
 
+#ifdef __MINGW_H
+#define _WIN32_IE 0x0900
+#endif
 #include <CommCtrl.h>
+#if defined(__MINGW_H) && !defined(ICC_STANDARD_CLASSES)
+#define ICC_STANDARD_CLASSES 0x00004000
+#endif
 
 #pragma comment(linker, "\"/manifestdependency:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 

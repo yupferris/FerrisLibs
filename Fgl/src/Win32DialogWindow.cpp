@@ -28,7 +28,6 @@ namespace Fgl
 			MAX_PATH,
 			0, 0, 0,
 			caption.GetData(),
-			0, 0, 0, 0, 0, 0, 0, 0, 0
 		};
 		String ret = GetOpenFileName(&ofn) ? fileName : "";
 		delete [] fileName;

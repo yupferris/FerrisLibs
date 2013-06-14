@@ -18,6 +18,7 @@
     <ClInclude Include="include\Fel\Cpu32.h" />
     <ClInclude Include="include\Fel\IEmulator.h" />
     <ClInclude Include="include\Fel\IEmulator32.h" />
+    <ClInclude Include="include\Fel\IEmulator8.h" />
     <ClInclude Include="include\Fel\IVideoDriver.h" />
     <ClInclude Include="include\Fel\VideoDriverFactory.h" />
     <ClInclude Include="include\Fel\Win32DirectSoundAudioDriver.h" />

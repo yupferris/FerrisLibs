@@ -32,6 +32,9 @@
     <ClInclude Include="include\Fel\Win32DirectSoundAudioDriver.h">
       <Filter>Fel\Win32\Drivers\Audio</Filter>
     </ClInclude>
+    <ClInclude Include="include\Fel\IEmulator8.h">
+      <Filter>Fel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Fel">

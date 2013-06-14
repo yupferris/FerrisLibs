@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="include\Fel.h" />
     <ClInclude Include="include\Fel\AudioDriverFactory.h" />
+    <ClInclude Include="include\Fel\Cpu8.h" />
     <ClInclude Include="include\Fel\IAudioDriver.h" />
     <ClInclude Include="include\Fel\ICpu.h" />
     <ClInclude Include="include\Fel\Cpu32.h" />
@@ -26,6 +27,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\src\Cpu32.cpp" />
+    <ClCompile Include="src\Cpu8.cpp" />
     <ClCompile Include="src\IAudioDriver.cpp" />
     <ClCompile Include="src\IVideoDriver.cpp" />
     <ClCompile Include="src\Win32AudioDriverFactory.cpp" />

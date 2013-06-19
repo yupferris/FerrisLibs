@@ -75,6 +75,14 @@ namespace Fel
 		return ret;
 	}
 
+	void Win32DirectSoundAudioDriver::SetSampleRate(int sampleRate)
+	{
+		mutex->Lock();
+		this->sampleRate = sampleRate;
+		recreateBuffers();
+		mutex->Unlock();
+	}
+
 	int Win32DirectSoundAudioDriver::GetSampleRate() const
 	{
 		mutex->Lock();

@@ -24,6 +24,7 @@ namespace Fel
 		virtual void SetLatencyMs(int latencyMs);
 		virtual int GetLatencyMs() const;
 
+		virtual void SetSampleRate(int sampleRate);
 		virtual int GetSampleRate() const;
 
 	private:

@@ -15,6 +15,11 @@ namespace Fplcs
             {
                 Type = type;
             }
+            public override bool Equals(object obj)
+            {
+                var other = obj as Token;
+                return other != null && other.Type.Equals(Type);
+            }
         }
 
         public delegate Token TokenCallback(string input, int pos, int length);

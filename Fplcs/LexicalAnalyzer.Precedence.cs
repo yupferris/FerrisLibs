@@ -42,6 +42,11 @@ namespace Fplcs
                 }
                 return false;
             }
+
+            public bool IsParentOrChild(PrecedenceNode pn)
+            {
+                return IsParent(pn) || IsChild(pn);
+            }
         }
 
         readonly Dictionary<TTokenType, PrecedenceNode> precedenceNodes = new Dictionary<TTokenType, PrecedenceNode>();

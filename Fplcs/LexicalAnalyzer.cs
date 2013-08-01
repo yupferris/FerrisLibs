@@ -87,17 +87,29 @@ namespace Fplcs
                     var newState = currentMatchList.States[i];
                     if (newState.Accepting)
                     {
-                        if (acceptingState != null &&
-                            (!EqualityComparer<TTokenType>.Default.Equals(newState.AcceptingTokenType, acceptingState.AcceptingTokenType) &&
-                            (!precedenceNodes.ContainsKey(acceptingState.AcceptingTokenType) ||
-                            !precedenceNodes.ContainsKey(newState.AcceptingTokenType) ||
-                            !precedenceNodes[acceptingState.AcceptingTokenType].IsParent(precedenceNodes[newState.AcceptingTokenType]))))
+                        if (acceptingState == null)
                         {
-                            throw new Exception("Ambiguous token definitions found with no applicable precedence rule");
+                            acceptingState = newState;
                         }
                         else
                         {
-                            acceptingState = newState;
+                            var acceptingType = acceptingState.AcceptingTokenType;
+                            var newType = newState.AcceptingTokenType;
+                            if (!EqualityComparer<TTokenType>.Default.Equals(newType, acceptingType))
+                            {
+                                PrecedenceNode acceptingNode;
+                                PrecedenceNode newNode;
+                                precedenceNodes.TryGetValue(acceptingType, out acceptingNode);
+                                precedenceNodes.TryGetValue(newType, out newNode);
+                                if (acceptingNode == null || newNode == null || !acceptingNode.IsParentOrChild(newNode))
+                                {
+                                    throw new Exception("Ambiguous token definitions found with no applicable precedence rule");
+                                }
+                                else if (acceptingNode.IsParent(newNode))
+                                {
+                                    acceptingState = newState;
+                                }
+                            }
                         }
                     }
                 }

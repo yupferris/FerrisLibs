@@ -20,6 +20,10 @@ namespace Fplcs
                 var other = obj as Token;
                 return other != null && other.Type.Equals(Type);
             }
+            public override int GetHashCode()
+            {
+                return Type.GetHashCode();
+            }
         }
 
         public delegate Token TokenCallback(string input, int pos, int length);

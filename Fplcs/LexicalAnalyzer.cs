@@ -33,7 +33,7 @@ namespace Fplcs
             states.Clear();
         }
 
-        public List<Token> Process(string input)
+        public List<Token> Process(string input, string fileName)
         {
             if (!finalized) finalize();
 
@@ -44,8 +44,14 @@ namespace Fplcs
 
             foreach (var state in states) state.lastInputPos = -1;
 
+            int line = 1;
+            int position = 1;
+
             for (int inputPos = 0; inputPos < input.Length; )
             {
+                int startLine = line;
+                int startPosition = position;
+
                 matchList1.Clear();
                 matchList2.Clear();
                 var currentMatchList = matchList1;
@@ -78,6 +84,16 @@ namespace Fplcs
                     {
                         currentMatchList = matchList1;
                         nextMatchList = matchList2;
+                    }
+
+                    if (c == '\n')
+                    {
+                        line++;
+                        position = 1;
+                    }
+                    else
+                    {
+                        position++;
                     }
                 }
 
@@ -115,7 +131,8 @@ namespace Fplcs
                 }
                 if (acceptingState != null)
                 {
-                    var t = tokenDefinitions[acceptingState.AcceptingTokenType].TokenCallback != null ? tokenDefinitions[acceptingState.AcceptingTokenType].TokenCallback(input, startPos, inputPos - startPos) : new Token(acceptingState.AcceptingTokenType);
+                    var source = new Source(fileName, startLine, startPosition);
+                    var t = tokenDefinitions[acceptingState.AcceptingTokenType].TokenCallback != null ? tokenDefinitions[acceptingState.AcceptingTokenType].TokenCallback(input, startPos, inputPos - startPos, source) : new Token(acceptingState.AcceptingTokenType, source);
                     if (t != null) tokens.Add(t);
                 }
                 else

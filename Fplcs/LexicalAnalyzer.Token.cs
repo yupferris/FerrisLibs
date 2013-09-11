@@ -8,25 +8,49 @@ namespace Fplcs
 {
     public partial class LexicalAnalyzer<TTokenType>
     {
+        public class Source
+        {
+            public readonly string FileName;
+            public readonly int Line;
+            public readonly int Position;
+            public Source(string fileName, int line, int position)
+            {
+                FileName = fileName;
+                Line = line;
+                Position = position;
+            }
+            public override bool Equals(object obj)
+            {
+                var other = obj as Source;
+                return other != null && other.FileName == FileName && other.Line == Line && other.Position == Position;
+            }
+            public override int GetHashCode()
+            {
+                return FileName.GetHashCode() ^ Line.GetHashCode() ^ Position.GetHashCode();
+            }
+        }
+
         public class Token
         {
             public readonly TTokenType Type;
-            public Token(TTokenType type)
+            public readonly Source Source;
+            public Token(TTokenType type, Source source)
             {
                 Type = type;
+                Source = source;
             }
             public override bool Equals(object obj)
             {
                 var other = obj as Token;
-                return other != null && other.Type.Equals(Type);
+                return other != null && other.Type.Equals(Type) && other.Source.Equals(Source);
             }
             public override int GetHashCode()
             {
-                return Type.GetHashCode();
+                return Type.GetHashCode() ^ Source.GetHashCode();
             }
         }
 
-        public delegate Token TokenCallback(string input, int pos, int length);
+        public delegate Token TokenCallback(string input, int pos, int length, Source source);
 
         class TokenDefinition
         {

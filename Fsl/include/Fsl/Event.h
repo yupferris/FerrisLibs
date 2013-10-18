@@ -49,7 +49,14 @@ namespace Fsl
 
 		Event1& operator +=(Handler handler)
 		{
-			handlers.Add(handler);
+			for (int i = 0; i < handlers.Count(); i++)
+			{
+				if (handlers[i].target<void(T)>() == handler.target<void(T)>())
+				{
+					handlers.RemoveAt(i);
+					break;
+				}
+			}
 			return *this;
 		}
 
@@ -69,7 +76,14 @@ namespace Fsl
 
 		Event2& operator +=(Handler handler)
 		{
-			handlers.Add(handler);
+			for (int i = 0; i < handlers.Count(); i++)
+			{
+				if (handlers[i].target<void(T1, T2)>() == handler.target<void(T1, T2)>())
+				{
+					handlers.RemoveAt(i);
+					break;
+				}
+			}
 			return *this;
 		}
 

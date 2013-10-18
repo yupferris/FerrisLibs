@@ -16,23 +16,30 @@ namespace Fsl
 
 		Event& operator +=(Handler handler)
 		{
-			handlers.Add(&handler);
+			handlers.Add(handler);
 			return *this;
 		}
 
 		Event& operator -=(Handler handler)
 		{
-			handlers.Remove(&handler);
+			for (int i = 0; i < handlers.Count(); i++)
+			{
+				if (handlers[i].target<void()>() == handler.target<void()>())
+				{
+					handlers.RemoveAt(i);
+					break;
+				}
+			}
 			return *this;
 		}
 
 		void operator()()
 		{
-			for (int i = 0; i < handlers.Count(); i++) (*handlers[i])();
+			for (int i = 0; i < handlers.Count(); i++) handlers[i]();
 		}
 
 	private:
-		Fsl::List<Handler *> handlers;
+		Fsl::List<Handler> handlers;
 	};
 
 	template <typename T> class Event1

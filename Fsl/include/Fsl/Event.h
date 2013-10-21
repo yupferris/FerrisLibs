@@ -1,7 +1,8 @@
 #ifndef __FSL_EVENT_H__
 #define __FSL_EVENT_H__
 
-#include "List.h"
+#include "Dictionary.h"
+#include "Exception.h"
 
 #include <functional>
 
@@ -14,32 +15,32 @@ namespace Fsl
 	public:
 		typedef std::function<void()> Handler;
 
-		Event& operator +=(Handler handler)
+		int operator +=(Handler handler)
 		{
-			handlers.Add(handler);
-			return *this;
+			int key = 0;
+			while (handlers.ContainsKey(key))
+			{
+				key++;
+				if (!key) throw FSL_EXCEPTION("Too many event handlers");
+			}
+			handlers.Add(key, handler);
+			return key;
 		}
 
-		Event& operator -=(Handler handler)
+		Event& operator -=(int key)
 		{
-			for (int i = 0; i < handlers.Count(); i++)
-			{
-				if (*handlers[i].target<void()>() == *handler.target<void()>())
-				{
-					handlers.RemoveAt(i);
-					break;
-				}
-			}
+			handlers.Remove(key);
 			return *this;
 		}
 
 		void operator()()
 		{
-			for (int i = 0; i < handlers.Count(); i++) handlers[i]();
+			auto values = handlers.GetValues();
+			for (int i = 0; i < values.Count(); i++) values[i]();
 		}
 
 	private:
-		Fsl::List<Handler> handlers;
+		Fsl::Dictionary<int, Handler> handlers;
 	};
 
 	template <typename T> class Event1
@@ -47,26 +48,32 @@ namespace Fsl
 	public:
 		typedef std::function<void(T)> Handler;
 
-		Event1& operator +=(Handler handler)
+		int operator +=(Handler handler)
 		{
-			for (int i = 0; i < handlers.Count(); i++)
+			int key = 0;
+			while (handlers.ContainsKey(key))
 			{
-				if (*handlers[i].target<void(T)>() == *handler.target<void(T)>())
-				{
-					handlers.RemoveAt(i);
-					break;
-				}
+				key++;
+				if (!key) throw FSL_EXCEPTION("Too many event handlers");
 			}
+			handlers.Add(key, handler);
+			return key;
+		}
+
+		Event1& operator -=(int key)
+		{
+			handlers.Remove(key);
 			return *this;
 		}
 
 		void operator()(T arg)
 		{
-			for (int i = 0; i < handlers.Count(); i++) handlers[i](arg);
+			auto values = handlers.GetValues();
+			for (int i = 0; i < values.Count(); i++) values[i](arg);
 		}
 
 	private:
-		Fsl::List<Handler> handlers;
+		Fsl::Dictionary<int, Handler> handlers;
 	};
 
 	template <typename T1, typename T2> class Event2
@@ -74,26 +81,32 @@ namespace Fsl
 	public:
 		typedef std::function<void(T1, T2)> Handler;
 
-		Event2& operator +=(Handler handler)
+		int operator +=(Handler handler)
 		{
-			for (int i = 0; i < handlers.Count(); i++)
+			int key = 0;
+			while (handlers.ContainsKey(key))
 			{
-				if (*handlers[i].target<void(T1, T2)>() == *handler.target<void(T1, T2)>())
-				{
-					handlers.RemoveAt(i);
-					break;
-				}
+				key++;
+				if (!key) throw FSL_EXCEPTION("Too many event handlers");
 			}
+			handlers.Add(key, handler);
+			return key;
+		}
+
+		Event2& operator -=(int key)
+		{
+			handlers.Remove(key);
 			return *this;
 		}
 
 		void operator()(T1 arg1, T2 arg2)
 		{
-			for (int i = 0; i < handlers.Count(); i++) handlers[i](arg1, arg2);
+			auto values = handlers.GetValues();
+			for (int i = 0; i < values.Count(); i++) values[i](arg1, arg2);
 		}
 
 	private:
-		Fsl::List<Handler> handlers;
+		Fsl::Dictionary<int, Handler> handlers;
 	};
 };
 

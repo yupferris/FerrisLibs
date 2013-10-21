@@ -43,7 +43,7 @@ namespace Fsl
 
 		void Remove(const TKey& key)
 		{
-			for (int i = 0; i < keys.Count; i++)
+			for (int i = 0; i < keys.Count(); i++)
 			{
 				if (key == keys[i])
 				{

@@ -1,5 +1,5 @@
 CC = clang++
-CXXFLAGS = -std=c++11 -Os -Wall
+CXXFLAGS = -std=c++11  -stdlib=libc++ -Os -Wall
 INCLUDES = -I$(FSL_INCLUDE_PATH)
 LFLAGS = 
 OUTDIR = $(FSL_LIB_PATH)
@@ -19,7 +19,7 @@ SRCS = \
 	src/Random.cpp \
 	src/Stream.cpp
 OBJS = $(SRCS:.cpp=.o)
-MAIN = $(OUTDIR)/Fsl.lib
+MAIN = $(OUTDIR)/libfsl.a
 
 all: $(MAIN)
 

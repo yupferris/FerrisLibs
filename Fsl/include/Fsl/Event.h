@@ -24,7 +24,7 @@ namespace Fsl
 		{
 			for (int i = 0; i < handlers.Count(); i++)
 			{
-				if (*handlers[i].target<void()>() == *handler.target<void()>())
+				if (*handlers[i].template target<void()>() == *handler.template target<void()>())
 				{
 					handlers.RemoveAt(i);
 					break;
@@ -51,7 +51,7 @@ namespace Fsl
 		{
 			for (int i = 0; i < handlers.Count(); i++)
 			{
-				if (*handlers[i].target<void(T)>() == *handler.target<void(T)>())
+				if (*handlers[i].template target<void(T)>() == *handler.template target<void(T)>())
 				{
 					handlers.RemoveAt(i);
 					break;
@@ -78,7 +78,7 @@ namespace Fsl
 		{
 			for (int i = 0; i < handlers.Count(); i++)
 			{
-				if (*handlers[i].target<void(T1, T2)>() == *handler.target<void(T1, T2)>())
+				if (*handlers[i].template target<void(T1, T2)>() == *handler.template target<void(T1, T2)>())
 				{
 					handlers.RemoveAt(i);
 					break;

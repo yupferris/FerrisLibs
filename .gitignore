@@ -21,6 +21,7 @@ Thumbs.db
 packages/
 
 # Ignore compiled and generated code.
+*.o
 bin/
 obj/
 Debug/

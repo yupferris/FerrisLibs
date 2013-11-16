@@ -10,14 +10,6 @@ namespace Fel
 	{
 	public:
 		virtual void Reset() = 0;
-		virtual void Update() = 0;
-
-		virtual int GetOutputWidth() const = 0;
-		virtual int GetOutputHeight() const = 0;
-
-		virtual void SetVideoDriver(IVideoDriver *videoDriver) = 0;
-		virtual void SetAudioDriver(IAudioDriver *audioDriver) = 0;
-
 		virtual void CpuCyclesCallback(int numCycles) = 0;
 	};
 }

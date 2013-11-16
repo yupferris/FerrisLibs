@@ -2,9 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="include\Fel.h" />
-    <ClInclude Include="include\Fel\Cpu32.h">
-      <Filter>Fel</Filter>
-    </ClInclude>
     <ClInclude Include="include\Fel\IEmulator.h">
       <Filter>Fel</Filter>
     </ClInclude>
@@ -35,7 +32,7 @@
     <ClInclude Include="include\Fel\IEmulator8.h">
       <Filter>Fel</Filter>
     </ClInclude>
-    <ClInclude Include="include\Fel\Cpu8.h">
+    <ClInclude Include="include\Fel\IEmulator16.h">
       <Filter>Fel</Filter>
     </ClInclude>
   </ItemGroup>
@@ -57,9 +54,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include=".\src\Cpu32.cpp">
-      <Filter>Fel</Filter>
-    </ClCompile>
     <ClCompile Include="src\IVideoDriver.cpp">
       <Filter>Fel</Filter>
     </ClCompile>
@@ -77,9 +71,6 @@
     </ClCompile>
     <ClCompile Include="src\Win32AudioDriverFactory.cpp">
       <Filter>Fel\Win32</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Cpu8.cpp">
-      <Filter>Fel</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

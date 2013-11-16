@@ -9,6 +9,7 @@ namespace Fel
 	{
 	public:
 		virtual void Reset() = 0;
+		virtual int Run(int targetCycles) = 0;
 	};
 }
 

@@ -21,6 +21,7 @@
 #include "Fsl/MemoryStream.h"
 #include "Fsl/FileStream.h"
 #include "Fsl/BinaryReader.h"
+#include "Fsl/BinaryWriter.h"
 #include "Fsl/BitReader.h"
 #include "Fsl/BitOrder.h"
 

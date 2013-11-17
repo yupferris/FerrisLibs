@@ -88,6 +88,9 @@
     <ClInclude Include="include\Fsl\BitOrder.h">
       <Filter>Fsl</Filter>
     </ClInclude>
+    <ClInclude Include="include\Fsl\BinaryWriter.h">
+      <Filter>Fsl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Exception.cpp">
@@ -139,6 +142,9 @@
       <Filter>Fsl</Filter>
     </ClCompile>
     <ClCompile Include="src\BitReader.cpp">
+      <Filter>Fsl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BinaryWriter.cpp">
       <Filter>Fsl</Filter>
     </ClCompile>
   </ItemGroup>

@@ -9,8 +9,10 @@ namespace Fbl
 	{
 		String,
 		Document,
+		Array,
 		Binary,
 		Int32,
+		Bool,
 	};
 
 	class BsonElement

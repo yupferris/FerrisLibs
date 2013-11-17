@@ -13,9 +13,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Fbl.h" />
-    <ClInclude Include="src\mongo-c-driver\src\bcon.h">
-      <Filter>Fbl\bson</Filter>
-    </ClInclude>
     <ClInclude Include="src\mongo-c-driver\src\encoding.h">
       <Filter>Fbl\bson</Filter>
     </ClInclude>
@@ -40,11 +37,17 @@
     <ClInclude Include="include\Fbl\BsonInt32Element.h">
       <Filter>Fbl\Elements</Filter>
     </ClInclude>
+    <ClInclude Include="include\Fbl\BsonBoolElement.h">
+      <Filter>Fbl\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Fbl\BsonArrayElement.h">
+      <Filter>Fbl\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mongo-c-driver\src\bson.h">
+      <Filter>Fbl\bson</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\mongo-c-driver\src\bcon.c">
-      <Filter>Fbl\bson</Filter>
-    </ClCompile>
     <ClCompile Include="src\mongo-c-driver\src\encoding.c">
       <Filter>Fbl\bson</Filter>
     </ClCompile>
@@ -71,6 +74,15 @@
     </ClCompile>
     <ClCompile Include="src\BsonInt32Element.cpp">
       <Filter>Fbl\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BsonBoolElement.cpp">
+      <Filter>Fbl\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BsonArrayElement.cpp">
+      <Filter>Fbl\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mongo-c-driver\src\bson.c">
+      <Filter>Fbl\bson</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

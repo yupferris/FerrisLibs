@@ -10,6 +10,14 @@ namespace Fbl
 		this->value = value;
 	}
 
+	BsonBinaryElement::BsonBinaryElement(const String& name, const unsigned char *data, int length)
+		: BsonElement(name)
+	{
+		value = List<unsigned char>(length);
+		for (int i = 0; i < length; i++)
+			value.Add(length);
+	}
+
 	BsonBinaryElement::~BsonBinaryElement()
 	{
 	}

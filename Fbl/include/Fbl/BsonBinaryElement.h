@@ -9,6 +9,7 @@ namespace Fbl
 	{
 	public:
 		BsonBinaryElement(const Fsl::String& name, const Fsl::List<unsigned char>& value);
+		BsonBinaryElement(const Fsl::String& name, const unsigned char *data, int length);
 		virtual ~BsonBinaryElement();
 
 		virtual BsonElementType GetType() const;

@@ -1,4 +1,5 @@
 #include <Fbl/BsonDocumentElement.h>
+#include <Fbl/BsonDocument.h>
 
 using namespace Fsl;
 

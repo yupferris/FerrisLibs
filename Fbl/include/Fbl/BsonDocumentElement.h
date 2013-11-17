@@ -2,10 +2,11 @@
 #define __FBL_BSONDOCUMENTELEMENT_H__
 
 #include "BsonElement.h"
-#include "BsonDocument.h"
 
 namespace Fbl
 {
+	class BsonDocument;
+
 	class BsonDocumentElement : public BsonElement
 	{
 	public:

@@ -1,0 +1,3 @@
+[submodule "Fbl/src/mongo-c-driver"]
+	path = Fbl/src/mongo-c-driver
+	url = git@github.com:mongodb/mongo-c-driver.git

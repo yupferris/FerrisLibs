@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Fbl">
+      <UniqueIdentifier>{e1a440e1-e132-4874-af9b-408028195712}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fbl\bson">
+      <UniqueIdentifier>{7dd25cd6-61e7-42e8-aac5-6f811b779af7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fbl\Elements">
+      <UniqueIdentifier>{452d08b3-0c9a-4907-9a52-66a926ff018d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Fbl.h" />
+    <ClInclude Include="src\mongo-c-driver\src\bcon.h">
+      <Filter>Fbl\bson</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mongo-c-driver\src\encoding.h">
+      <Filter>Fbl\bson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Fbl\BsonElement.h">
+      <Filter>Fbl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Fbl\BsonStringElement.h">
+      <Filter>Fbl\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Fbl\BsonDocument.h">
+      <Filter>Fbl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Fbl\BsonSerializer.h">
+      <Filter>Fbl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Fbl\BsonDocumentElement.h">
+      <Filter>Fbl\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Fbl\BsonBinaryElement.h">
+      <Filter>Fbl\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Fbl\BsonInt32Element.h">
+      <Filter>Fbl\Elements</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\mongo-c-driver\src\bcon.c">
+      <Filter>Fbl\bson</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mongo-c-driver\src\encoding.c">
+      <Filter>Fbl\bson</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mongo-c-driver\src\numbers.c">
+      <Filter>Fbl\bson</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BsonElement.cpp">
+      <Filter>Fbl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BsonStringElement.cpp">
+      <Filter>Fbl\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BsonDocument.cpp">
+      <Filter>Fbl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BsonSerializer.cpp">
+      <Filter>Fbl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BsonDocumentElement.cpp">
+      <Filter>Fbl\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BsonBinaryElement.cpp">
+      <Filter>Fbl\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BsonInt32Element.cpp">
+      <Filter>Fbl\Elements</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

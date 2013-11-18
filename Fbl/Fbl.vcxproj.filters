@@ -22,14 +22,8 @@
     <ClInclude Include="include\Fbl\BsonStringElement.h">
       <Filter>Fbl\Elements</Filter>
     </ClInclude>
-    <ClInclude Include="include\Fbl\BsonDocument.h">
-      <Filter>Fbl</Filter>
-    </ClInclude>
     <ClInclude Include="include\Fbl\BsonSerializer.h">
       <Filter>Fbl</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Fbl\BsonDocumentElement.h">
-      <Filter>Fbl\Elements</Filter>
     </ClInclude>
     <ClInclude Include="include\Fbl\BsonBinaryElement.h">
       <Filter>Fbl\Elements</Filter>
@@ -46,6 +40,12 @@
     <ClInclude Include="src\mongo-c-driver\src\bson.h">
       <Filter>Fbl\bson</Filter>
     </ClInclude>
+    <ClInclude Include="include\Fbl\BsonObject.h">
+      <Filter>Fbl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Fbl\BsonObjectElement.h">
+      <Filter>Fbl\Elements</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\mongo-c-driver\src\encoding.c">
@@ -60,14 +60,8 @@
     <ClCompile Include="src\BsonStringElement.cpp">
       <Filter>Fbl\Elements</Filter>
     </ClCompile>
-    <ClCompile Include="src\BsonDocument.cpp">
-      <Filter>Fbl</Filter>
-    </ClCompile>
     <ClCompile Include="src\BsonSerializer.cpp">
       <Filter>Fbl</Filter>
-    </ClCompile>
-    <ClCompile Include="src\BsonDocumentElement.cpp">
-      <Filter>Fbl\Elements</Filter>
     </ClCompile>
     <ClCompile Include="src\BsonBinaryElement.cpp">
       <Filter>Fbl\Elements</Filter>
@@ -83,6 +77,12 @@
     </ClCompile>
     <ClCompile Include="src\mongo-c-driver\src\bson.c">
       <Filter>Fbl\bson</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BsonObject.cpp">
+      <Filter>Fbl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BsonObjectElement.cpp">
+      <Filter>Fbl\Elements</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

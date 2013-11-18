@@ -1,7 +1,7 @@
 #ifndef __FBL_BSONSERIALIZER_H__
 #define __FBL_BSONSERIALIZER_H__
 
-#include "BsonDocument.h"
+#include "BsonObject.h"
 
 #ifndef MONGO_STATIC_BUILD
 #define MONGO_STATIC_BUILD
@@ -16,13 +16,13 @@ namespace Fbl
 	class BsonSerializer
 	{
 	public:
-		static void Serialize(const Fsl::String& fileName, const BsonDocument *document);
-		static BsonDocument *Deserialize(const Fsl::String& fileName);
+		static void Serialize(const Fsl::String& fileName, const BsonObject *object);
+		static BsonObject *Deserialize(const Fsl::String& fileName);
 
 	private:
-		static void serializeDocument(bson *b, const BsonDocument *document);
+		static void serializeObject(bson *b, const BsonObject *object);
 		static void serializeElement(bson *b, const BsonElement *element);
-		static BsonDocument *deserializeDocument(bson_iterator *it);
+		static BsonObject *deserializeObject(bson_iterator *it);
 		static BsonElement *deserializeElement(bson_iterator *it);
 	};
 }

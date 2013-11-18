@@ -8,7 +8,7 @@ namespace Fbl
 	enum class BsonElementType
 	{
 		String,
-		Document,
+		Object,
 		Array,
 		Binary,
 		Int32,

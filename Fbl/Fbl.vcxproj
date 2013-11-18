@@ -15,8 +15,8 @@
     <ClInclude Include="include\Fbl\BsonArrayElement.h" />
     <ClInclude Include="include\Fbl\BsonBinaryElement.h" />
     <ClInclude Include="include\Fbl\BsonBoolElement.h" />
-    <ClInclude Include="include\Fbl\BsonDocument.h" />
-    <ClInclude Include="include\Fbl\BsonDocumentElement.h" />
+    <ClInclude Include="include\Fbl\BsonObject.h" />
+    <ClInclude Include="include\Fbl\BsonObjectElement.h" />
     <ClInclude Include="include\Fbl\BsonElement.h" />
     <ClInclude Include="include\Fbl\BsonInt32Element.h" />
     <ClInclude Include="include\Fbl\BsonSerializer.h" />
@@ -28,8 +28,8 @@
     <ClCompile Include="src\BsonArrayElement.cpp" />
     <ClCompile Include="src\BsonBinaryElement.cpp" />
     <ClCompile Include="src\BsonBoolElement.cpp" />
-    <ClCompile Include="src\BsonDocument.cpp" />
-    <ClCompile Include="src\BsonDocumentElement.cpp" />
+    <ClCompile Include="src\BsonObject.cpp" />
+    <ClCompile Include="src\BsonObjectElement.cpp" />
     <ClCompile Include="src\BsonElement.cpp" />
     <ClCompile Include="src\BsonInt32Element.cpp" />
     <ClCompile Include="src\BsonSerializer.cpp" />

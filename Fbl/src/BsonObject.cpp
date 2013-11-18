@@ -1,6 +1,6 @@
-#include <Fbl/BsonDocument.h>
+#include <Fbl/BsonObject.h>
 #include <Fbl/BsonStringElement.h>
-#include <Fbl/BsonDocumentElement.h>
+#include <Fbl/BsonObjectElement.h>
 #include <Fbl/BsonBinaryElement.h>
 #include <Fbl/BsonInt32Element.h>
 #include <Fbl/BsonBoolElement.h>
@@ -9,67 +9,67 @@ using namespace Fsl;
 
 namespace Fbl
 {
-	BsonDocument::~BsonDocument()
+	BsonObject::~BsonObject()
 	{
 		auto values = elements.GetValues();
 		for (int i = 0; i < values.Count(); i++)
 			delete values[i];
 	}
 
-	const Dictionary<String, BsonElement *> BsonDocument::GetElements() const
+	const Dictionary<String, BsonElement *> BsonObject::GetElements() const
 	{
 		return elements;
 	}
 
-	void BsonDocument::AddElement(BsonElement *element)
+	void BsonObject::AddElement(BsonElement *element)
 	{
 		elements.Add(element->GetName(), element);
 	}
 
-	void BsonDocument::AddString(const String& name, const String& value)
+	void BsonObject::AddString(const String& name, const String& value)
 	{
 		elements.Add(name, new BsonStringElement(name, value));
 	}
 
-	void BsonDocument::AddDocument(const String& name, BsonDocument *value)
+	void BsonObject::AddObject(const String& name, BsonObject *value)
 	{
-		elements.Add(name, new BsonDocumentElement(name, value));
+		elements.Add(name, new BsonObjectElement(name, value));
 	}
 
-	void BsonDocument::AddBinary(const String& name, const Fsl::List<unsigned char>& value)
+	void BsonObject::AddBinary(const String& name, const Fsl::List<unsigned char>& value)
 	{
 		elements.Add(name, new BsonBinaryElement(name, value));
 	}
 
-	void BsonDocument::AddBinary(const Fsl::String& name, const unsigned char *data, int length)
+	void BsonObject::AddBinary(const Fsl::String& name, const unsigned char *data, int length)
 	{
 		elements.Add(name, new BsonBinaryElement(name, data, length));
 	}
 
-	void BsonDocument::AddInt32(const String& name, int value)
+	void BsonObject::AddInt32(const String& name, int value)
 	{
 		elements.Add(name, new BsonInt32Element(name, value));
 	}
 
-	void BsonDocument::AddBool(const Fsl::String& name, bool value)
+	void BsonObject::AddBool(const Fsl::String& name, bool value)
 	{
 		elements.Add(name, new BsonBoolElement(name, value));
 	}
 
-	const BsonElement *BsonDocument::TryGetElement(const Fsl::String& name) const
+	const BsonElement *BsonObject::TryGetElement(const Fsl::String& name) const
 	{
 		return elements.ContainsKey(name) ? elements[name] : nullptr;
 	}
 
-	const BsonElement *BsonDocument::GetElement(const Fsl::String& name) const
+	const BsonElement *BsonObject::GetElement(const Fsl::String& name) const
 	{
 		auto ret = TryGetElement(name);
 		if (!ret)
-			throw FSL_EXCEPTION("Document did not contain an element with the given name");
+			throw FSL_EXCEPTION("Object did not contain an element with the given name");
 		return ret;
 	}
 
-	bool BsonDocument::TryGetElementValue(const String& name, String& value) const
+	bool BsonObject::TryGetElementValue(const String& name, String& value) const
 	{
 		auto element = tryGetElement(name, BsonElementType::String);
 		if (!element)
@@ -78,16 +78,16 @@ namespace Fbl
 		return true;
 	}
 
-	bool BsonDocument::TryGetElementValue(const String& name, BsonDocument *& value) const
+	bool BsonObject::TryGetElementValue(const String& name, BsonObject *& value) const
 	{
-		auto element = tryGetElement(name, BsonElementType::Document);
+		auto element = tryGetElement(name, BsonElementType::Object);
 		if (!element)
 			return false;
-		value = ((BsonDocumentElement *)element)->GetValue();
+		value = ((BsonObjectElement *)element)->GetValue();
 		return true;
 	}
 
-	bool BsonDocument::TryGetElementValue(const String& name, Fsl::List<BsonElement *>& value) const
+	bool BsonObject::TryGetElementValue(const String& name, Fsl::List<BsonElement *>& value) const
 	{
 		auto element = tryGetElement(name, BsonElementType::Array);
 		if (!element)
@@ -96,7 +96,7 @@ namespace Fbl
 		return true;
 	}
 
-	bool BsonDocument::TryGetElementValue(const String& name, List<unsigned char>& value) const
+	bool BsonObject::TryGetElementValue(const String& name, List<unsigned char>& value) const
 	{
 		auto element = tryGetElement(name, BsonElementType::Binary);
 		if (!element)
@@ -105,7 +105,7 @@ namespace Fbl
 		return true;
 	}
 
-	bool BsonDocument::TryGetElementValue(const String& name, int& value) const
+	bool BsonObject::TryGetElementValue(const String& name, int& value) const
 	{
 		auto element = tryGetElement(name, BsonElementType::Int32);
 		if (!element)
@@ -114,7 +114,7 @@ namespace Fbl
 		return true;
 	}
 
-	bool BsonDocument::TryGetElementValue(const String& name, bool& value) const
+	bool BsonObject::TryGetElementValue(const String& name, bool& value) const
 	{
 		auto element = tryGetElement(name, BsonElementType::Bool);
 		if (!element)
@@ -123,43 +123,43 @@ namespace Fbl
 		return true;
 	}
 
-	const String& BsonDocument::GetStringValue(const String& name) const
+	const String& BsonObject::GetStringValue(const String& name) const
 	{
 		auto element = getElement(name, BsonElementType::String);
 		return ((BsonStringElement *)element)->GetValue();
 	}
 
-	BsonDocument *BsonDocument::GetDocumentValue(const String& name) const
+	BsonObject *BsonObject::GetObjectValue(const String& name) const
 	{
-		auto element = getElement(name, BsonElementType::Document);
-		return ((BsonDocumentElement *)element)->GetValue();
+		auto element = getElement(name, BsonElementType::Object);
+		return ((BsonObjectElement *)element)->GetValue();
 	}
 
-	const List<BsonElement *> BsonDocument::GetArrayValue(const String& name) const
+	const List<BsonElement *> BsonObject::GetArrayValue(const String& name) const
 	{
 		auto element = getElement(name, BsonElementType::Array);
 		return ((BsonArrayElement *)element)->GetElements();
 	}
 
-	const List<unsigned char>& BsonDocument::GetBinaryValue(const String& name) const
+	const List<unsigned char>& BsonObject::GetBinaryValue(const String& name) const
 	{
 		auto element = getElement(name, BsonElementType::Binary);
 		return ((BsonBinaryElement *)element)->GetValue();
 	}
 
-	int BsonDocument::GetInt32Value(const String& name) const
+	int BsonObject::GetInt32Value(const String& name) const
 	{
 		auto element = getElement(name, BsonElementType::Int32);
 		return ((BsonInt32Element *)element)->GetValue();
 	}
 
-	bool BsonDocument::GetBoolValue(const String& name) const
+	bool BsonObject::GetBoolValue(const String& name) const
 	{
 		auto element = getElement(name, BsonElementType::Bool);
 		return ((BsonBoolElement *)element)->GetValue();
 	}
 
-	const BsonElement *BsonDocument::tryGetElement(const Fsl::String& name, BsonElementType type) const
+	const BsonElement *BsonObject::tryGetElement(const Fsl::String& name, BsonElementType type) const
 	{
 		auto ret = TryGetElement(name);
 		if (!ret)
@@ -169,7 +169,7 @@ namespace Fbl
 		return ret;
 	}
 
-	const BsonElement *BsonDocument::getElement(const Fsl::String& name, BsonElementType type) const
+	const BsonElement *BsonObject::getElement(const Fsl::String& name, BsonElementType type) const
 	{
 		auto ret = GetElement(name);
 		if (ret->GetType() != type)

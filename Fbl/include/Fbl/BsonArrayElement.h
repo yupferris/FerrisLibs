@@ -5,7 +5,7 @@
 
 namespace Fbl
 {
-	class BsonDocument;
+	class BsonObject;
 
 	class BsonArrayElement : public BsonElement
 	{
@@ -18,7 +18,7 @@ namespace Fbl
 		void AddElement(BsonElement *element);
 
 		void AddString(const Fsl::String& value);
-		void AddDocument(BsonDocument *value);
+		void AddObject(BsonObject *value);
 		void AddBinary(const Fsl::List<unsigned char>& value);
 		void AddBinary(const unsigned char *data, int length);
 		void AddInt32(int value);

@@ -1,6 +1,6 @@
 #include <Fbl/BsonSerializer.h>
 #include <Fbl/BsonStringElement.h>
-#include <Fbl/BsonDocumentElement.h>
+#include <Fbl/BsonObjectElement.h>
 #include <Fbl/BsonArrayElement.h>
 #include <Fbl/BsonBinaryElement.h>
 #include <Fbl/BsonInt32Element.h>
@@ -10,12 +10,12 @@ using namespace Fsl;
 
 namespace Fbl
 {
-	void BsonSerializer::Serialize(const String& fileName, const BsonDocument *document)
+	void BsonSerializer::Serialize(const String& fileName, const BsonObject *object)
 	{
 		bson b;
 		bson_init(&b);
 
-		serializeDocument(&b, document);
+		serializeObject(&b, object);
 
 		bson_finish(&b);
 		FileStream(fileName, FileStream::FileMode::OpenWrite).Write((const unsigned char *)bson_data(&b), 0, bson_size(&b));
@@ -23,7 +23,7 @@ namespace Fbl
 		bson_destroy(&b);
 	}
 
-	BsonDocument *BsonSerializer::Deserialize(const String& fileName)
+	BsonObject *BsonSerializer::Deserialize(const String& fileName)
 	{
 		auto input = File::ReadAllBytes(fileName);
 		bson b;
@@ -31,16 +31,16 @@ namespace Fbl
 
 		bson_iterator it;
 		bson_iterator_init(&it, &b);
-		auto ret = deserializeDocument(&it);
+		auto ret = deserializeObject(&it);
 
 		bson_destroy(&b);
 
 		return ret;
 	}
 
-	void BsonSerializer::serializeDocument(bson *b, const BsonDocument *document)
+	void BsonSerializer::serializeObject(bson *b, const BsonObject *object)
 	{
-		auto elements = document->GetElements().GetValues();
+		auto elements = object->GetElements().GetValues();
 		for (int i = 0; i < elements.Count(); i++)
 			serializeElement(b, elements[i]);
 	}
@@ -54,9 +54,9 @@ namespace Fbl
 			bson_append_string(b, elementName, ((BsonStringElement *)element)->GetValue().GetData());
 			break;
 
-		case BsonElementType::Document:
+		case BsonElementType::Object:
 			bson_append_start_object(b, elementName);
-			serializeDocument(b, ((BsonDocumentElement *)element)->GetValue());
+			serializeObject(b, ((BsonObjectElement *)element)->GetValue());
 			bson_append_finish_object(b);
 			break;
 
@@ -90,9 +90,9 @@ namespace Fbl
 		}
 	}
 
-	BsonDocument *BsonSerializer::deserializeDocument(bson_iterator *it)
+	BsonObject *BsonSerializer::deserializeObject(bson_iterator *it)
 	{
-		auto ret = new BsonDocument();
+		auto ret = new BsonObject();
 
 		while (true)
 		{
@@ -122,7 +122,7 @@ namespace Fbl
 			{
 				bson_iterator it2;
 				bson_iterator_subiterator(it, &it2);
-				return new BsonDocumentElement(name, deserializeDocument(&it2));
+				return new BsonObjectElement(name, deserializeObject(&it2));
 			}
 
 		case BSON_ARRAY:

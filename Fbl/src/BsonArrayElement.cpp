@@ -1,6 +1,6 @@
 #include <Fbl/BsonArrayElement.h>
 #include <Fbl/BsonStringElement.h>
-#include <Fbl/BsonDocumentElement.h>
+#include <Fbl/BsonObjectElement.h>
 #include <Fbl/BsonBinaryElement.h>
 #include <Fbl/BsonInt32Element.h>
 #include <Fbl/BsonBoolElement.h>
@@ -35,9 +35,9 @@ namespace Fbl
 		AddElement(new BsonStringElement(elements.Count(), value));
 	}
 
-	void BsonArrayElement::AddDocument(BsonDocument *value)
+	void BsonArrayElement::AddObject(BsonObject *value)
 	{
-		AddElement(new BsonDocumentElement(elements.Count(), value));
+		AddElement(new BsonObjectElement(elements.Count(), value));
 	}
 
 	void BsonArrayElement::AddBinary(const List<unsigned char>& value)

@@ -55,13 +55,18 @@ namespace Fsl
 			return *this;
 		}
 
-		bool Contains(const T& item) const
+		int IndexOf(const T& item) const
 		{
 			for (int i = 0; i < count; i++)
 			{
-				if (data[i] == item) return true;
+				if (data[i] == item) return i;
 			}
-			return false;
+			return -1;
+		}
+
+		bool Contains(const T& item) const
+		{
+			return IndexOf(item) != -1;
 		}
 
 		void Add(const T& item)

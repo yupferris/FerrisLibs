@@ -59,6 +59,7 @@ namespace Fsl
 		bool EndsWith(const Stringt& s) const;
 		Stringt Substring(int startPos) const;
 		Stringt Substring(int startPos, int len) const;
+		Stringt Replace(T oldValue, T newValue) const;
 		int LastIndexOf(T c) const;
 		List<Stringt> Split(T c) const;
 		Stringt ToLower() const;

@@ -283,6 +283,25 @@ namespace Fsl
 		return ret;
 	}
 
+	template <typename T> Stringt<T> Stringt<T>::Replace(T oldValue, T newValue) const
+	{
+		Stringt<T> ret(*this);
+		bool hasFoundMatch = false;
+		for (int i = 0; i < Length(); i++)
+		{
+			if (ret.stringData->Data[i] == oldValue)
+			{
+				if (!hasFoundMatch)
+				{
+					ret.ensureUniqueStringData();
+					hasFoundMatch = true;
+				}
+				ret.stringData->Data[i] = newValue;
+			}
+		}
+		return ret;
+	}
+
 	template <typename T> int Stringt<T>::LastIndexOf(T c) const
 	{
 		if (!stringData) throw FSL_EXCEPTION("Cannot search empty string");

@@ -11,15 +11,15 @@ namespace Fsl
 		BinaryReader(Stream *stream);
 
 		unsigned char ReadByte();
-		short ReadInt16();
-		unsigned short ReadUInt16();
-		int ReadInt32();
-		unsigned int ReadUInt32();
-		long long ReadInt64();
-		unsigned long long ReadUInt64();
+		short ReadInt16(bool littleEndian = true);
+		unsigned short ReadUInt16(bool littleEndian = true);
+		int ReadInt32(bool littleEndian = true);
+		unsigned int ReadUInt32(bool littleEndian = true);
+		long long ReadInt64(bool littleEndian = true);
+		unsigned long long ReadUInt64(bool littleEndian = true);
 
-		float ReadSingle();
-		double ReadDouble();
+		float ReadSingle(bool littleEndian = true);
+		double ReadDouble(bool littleEndian = true);
 
 	private:
 		Stream *stream;

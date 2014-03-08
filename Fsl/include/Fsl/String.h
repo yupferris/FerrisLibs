@@ -279,7 +279,7 @@ namespace Fsl
 		if (len < 0 || len > length) throw FSL_EXCEPTION("Invalid length specified");
 		if (startPos + len > length) throw FSL_EXCEPTION("Invalid starting position and length specified");
 		Stringt<T> ret;
-		if (len - startPos) ret.stringData = new StringData(stringData->Data + startPos, len);
+		if (length - startPos) ret.stringData = new StringData(stringData->Data + startPos, len);
 		return ret;
 	}
 

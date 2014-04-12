@@ -152,11 +152,13 @@ namespace Fsl
 	{
 		if (!s.Length()) return Stringt<T>(*this);
 		int newSize = Length() + s.Length();
-		T *newData = new T[newSize + 1];
+		auto newData = new T[newSize + 1];
 		for (int i = 0; i < Length(); i++) newData[i] = Get(i);
 		for (int i = 0; i < s.Length(); i++) newData[i + Length()] = s[i];
 		newData[newSize] = 0;
-		return Stringt<T>(newData);
+		auto ret = Stringt<T>(newData);
+		delete newData;
+		return ret;
 	}
 
 	template <typename T> Stringt<T> Stringt<T>::operator +(const T *s) const
@@ -201,13 +203,11 @@ namespace Fsl
 
 	template <typename T> Stringt<T>& Stringt<T>::operator +=(T c)
 	{
-
 		return *this = *this + c;
 	}
 
 	template <typename T> Stringt<T>& Stringt<T>::operator +=(long long l)
 	{
-
 		return *this = *this + l;
 	}
 

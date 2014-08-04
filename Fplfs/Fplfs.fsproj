@@ -42,7 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fplfs.RegexParser.fs" />
-    <None Include="Proto.fsx" />
     <None Include="app.config" />
   </ItemGroup>
   <PropertyGroup>

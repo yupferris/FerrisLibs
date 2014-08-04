@@ -25,6 +25,15 @@
                         | [] -> failwith (sprintf "'%c' found with no preceding expression" c)
                         | head :: tail -> parseChars (f head :: tail) pos'
 
+                    let parseEscapeSequence pos =
+                        if pos >= s.Length then failwith "Unexpected end of string"
+                        match s.[pos] with
+                        | '\\' -> '\\'
+                        | 't' -> '\t'
+                        | 'r' -> '\r'
+                        | 'n' -> '\n'
+                        | _ -> failwith "Invalid character escape sequence"
+
                     match s.[pos] with
                     | '*' -> handleModifierChar '*' ZeroOrMoreAstNode acc
                     | '+' -> handleModifierChar '+' OneOrMoreAstNode acc
@@ -39,6 +48,7 @@
                     | ')' ->
                         if parenLevel <= 0 then failwith "')' with no preceeding '('"
                         (acc, pos')
+                    | '\\' -> parseChars (CharAstNode (parseEscapeSequence pos') :: acc) (pos' + 1)
                     | x -> parseChars (CharAstNode x :: acc) pos'
 
             let contents, pos' = parseChars [] pos

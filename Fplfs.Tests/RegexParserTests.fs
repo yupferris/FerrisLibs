@@ -77,6 +77,19 @@
     [<Fact>]
     let ``Regex parse basic parens 02`` () = parseRegex "a(bcd)" |> should equal (SequenceAstNode [CharAstNode 'a'; SequenceAstNode [CharAstNode 'b'; CharAstNode 'c'; CharAstNode 'd']])
 
+    // Basic escape sequences
+    [<Fact>]
+    let ``Regex parse escape seq 00`` () = parseRegex "\\\\" |> should equal (CharAstNode '\\')
+
+    [<Fact>]
+    let ``Regex parse escape seq 01`` () = parseRegex "\\t" |> should equal (CharAstNode '\t')
+
+    [<Fact>]
+    let ``Regex parse escape seq 02`` () = parseRegex "\\r" |> should equal (CharAstNode '\r')
+
+    [<Fact>]
+    let ``Regex parse escape seq 03`` () = parseRegex "\\n" |> should equal (CharAstNode '\n')
+
     // Complex cases
     [<Fact>]
     let ``Regex parse complex 00`` () =
@@ -142,3 +155,12 @@
 
     [<Fact>]
     let ``Regex parse bad parens 03`` () = testException (fun () -> parseRegex "((sdf)ff)f)")
+
+    [<Fact>]
+    let ``Regex parse bad escape seq 00`` () = testException (fun () -> parseRegex "\\")
+
+    [<Fact>]
+    let ``Regex parse bad escape seq 01`` () = testException (fun () -> parseRegex "asdfasdfasf\\")
+
+    [<Fact>]
+    let ``Regex parse bad escape seq 02`` () = testException (fun () -> parseRegex "\\j")

@@ -26,6 +26,7 @@ bin/
 obj/
 Debug/
 Release/
+TestResults/
 build/
 Fel/lib/*
 Fml/lib/*

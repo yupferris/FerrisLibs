@@ -1,4 +1,7 @@
 ﻿module Fplfs.RegexParser
+    type CharacterClassType =
+        | AnyCharacter
+
     type RegexAstNode =
         | CharAstNode of char
         | SequenceAstNode of RegexAstNode list
@@ -6,6 +9,7 @@
         | OneOrMoreAstNode of RegexAstNode
         | ZeroOrOneAstNode of RegexAstNode
         | OrAstNode of RegexAstNode * RegexAstNode
+        | CharacterClassAstNode of CharacterClassType
 
     let parseRegex (s : string) =
         let rec parseExpression parenLevel pos =
@@ -53,6 +57,7 @@
                         if parenLevel <= 0 then failwith "')' with no preceeding '('"
                         (acc, pos')
                     | '\\' -> parseChars (CharAstNode (parseEscapeSequence pos') :: acc) (pos' + 1)
+                    | '.' -> parseChars (CharacterClassAstNode AnyCharacter :: acc) pos'
                     | x -> parseChars (CharAstNode x :: acc) pos'
 
             let contents, pos' = parseChars [] pos

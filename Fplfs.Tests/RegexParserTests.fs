@@ -117,6 +117,16 @@
     [<Fact>]
     let ``Regex parse escape seq 12`` () = parseRegex "\\." |> should equal (CharAstNode '.')
 
+    // Basic character classes
+    [<Fact>]
+    let ``Regex parse character classes 00`` () = parseRegex "." |> should equal (CharacterClassAstNode AnyCharacter)
+
+    [<Fact>]
+    let ``Regex parse character classes 01`` () = parseRegex "((((((((.))))))))" |> should equal (CharacterClassAstNode AnyCharacter)
+
+    [<Fact>]
+    let ``Regex parse character classes 02`` () = parseRegex "a.*b" |> should equal (SequenceAstNode [CharAstNode 'a'; ZeroOrMoreAstNode (CharacterClassAstNode AnyCharacter); CharAstNode 'b'])
+
     // Complex cases
     [<Fact>]
     let ``Regex parse complex 00`` () =
@@ -134,14 +144,14 @@
 
     [<Fact>]
     let ``Regex parse complex 01`` () =
-        parseRegex "(;|//)(abc)*"
+        parseRegex "(;|//)(ab\|c)*"
         |> should equal
             (SequenceAstNode
                 [OrAstNode
                     (CharAstNode ';',
                     SequenceAstNode [CharAstNode '/'; CharAstNode '/']);
                 ZeroOrMoreAstNode
-                    (SequenceAstNode [CharAstNode 'a'; CharAstNode 'b'; CharAstNode 'c'])])
+                    (SequenceAstNode [CharAstNode 'a'; CharAstNode 'b'; CharAstNode '|'; CharAstNode 'c'])])
 
     // Error cases
     [<Fact>]

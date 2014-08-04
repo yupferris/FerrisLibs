@@ -67,6 +67,16 @@
     [<Fact>]
     let ``Regex parse basic or 01`` () = parseRegex "a|b|c" |> should equal (OrAstNode (CharAstNode 'a', OrAstNode (CharAstNode 'b', CharAstNode 'c')))
 
+    // Basic paren cases
+    [<Fact>]
+    let ``Regex parse basic parens 00`` () = parseRegex "a(b)c" |> should equal (SequenceAstNode [CharAstNode 'a'; CharAstNode 'b'; CharAstNode 'c'])
+
+    [<Fact>]
+    let ``Regex parse basic parens 01`` () = parseRegex "a(b|c)d" |> should equal (SequenceAstNode [CharAstNode 'a'; OrAstNode (CharAstNode 'b', CharAstNode 'c'); CharAstNode 'd'])
+
+    [<Fact>]
+    let ``Regex parse basic parens 02`` () = parseRegex "a(bcd)" |> should equal (SequenceAstNode [CharAstNode 'a'; SequenceAstNode [CharAstNode 'b'; CharAstNode 'c'; CharAstNode 'd']])
+
     // Complex cases
     [<Fact>]
     let ``Regex parse complex 00`` () =

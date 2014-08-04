@@ -20,11 +20,11 @@
 
     // Basic sequence cases
     [<Fact>]
-    let ``Regex parse basic sequence 00`` () = parseRegex "abc" |> should equal (SequenceAstNode [(CharAstNode 'a'); (CharAstNode 'b'); (CharAstNode 'c')])
+    let ``Regex parse basic sequence 00`` () = parseRegex "abc" |> should equal (SequenceAstNode [CharAstNode 'a'; CharAstNode 'b'; CharAstNode 'c'])
 
     // Basic sequence cases
     [<Fact>]
-    let ``Regex parse basic sequence 01`` () = parseRegex "Jake" |> should equal (SequenceAstNode [(CharAstNode 'J'); (CharAstNode 'a'); (CharAstNode 'k'); (CharAstNode 'e')])
+    let ``Regex parse basic sequence 01`` () = parseRegex "Jake" |> should equal (SequenceAstNode [CharAstNode 'J'; CharAstNode 'a'; CharAstNode 'k'; CharAstNode 'e'])
 
     // Basic sequence cases
     [<Fact>]
@@ -35,30 +35,34 @@
     let ``Regex parse basic zero-or-more 00`` () = parseRegex "P*" |> should equal (ZeroOrMoreAstNode (CharAstNode 'P'))
 
     [<Fact>]
-    let ``Regex parse basic zero-or-more 01`` () = parseRegex "ab*c" |> should equal (SequenceAstNode [(CharAstNode 'a'); (ZeroOrMoreAstNode (CharAstNode 'b')); (CharAstNode 'c')])
+    let ``Regex parse basic zero-or-more 01`` () = parseRegex "ab*c" |> should equal (SequenceAstNode [CharAstNode 'a'; ZeroOrMoreAstNode (CharAstNode 'b'); CharAstNode 'c'])
 
     [<Fact>]
-    let ``Regex parse basic zero-or-more 02`` () = parseRegex "ab*cd*" |> should equal (SequenceAstNode [(CharAstNode 'a'); (ZeroOrMoreAstNode (CharAstNode 'b')); (CharAstNode 'c'); (ZeroOrMoreAstNode (CharAstNode 'd'))])
+    let ``Regex parse basic zero-or-more 02`` () = parseRegex "ab*cd*" |> should equal (SequenceAstNode [CharAstNode 'a'; ZeroOrMoreAstNode (CharAstNode 'b'); CharAstNode 'c'; ZeroOrMoreAstNode (CharAstNode 'd')])
 
     // Basic one-or-more cases
     [<Fact>]
     let ``Regex parse basic one-or-more 00`` () = parseRegex "P+" |> should equal (OneOrMoreAstNode (CharAstNode 'P'))
 
     [<Fact>]
-    let ``Regex parse basic one-or-more 01`` () = parseRegex "ab+c" |> should equal (SequenceAstNode [(CharAstNode 'a'); (OneOrMoreAstNode (CharAstNode 'b')); (CharAstNode 'c')])
+    let ``Regex parse basic one-or-more 01`` () = parseRegex "ab+c" |> should equal (SequenceAstNode [CharAstNode 'a'; OneOrMoreAstNode (CharAstNode 'b'); CharAstNode 'c'])
 
     [<Fact>]
-    let ``Regex parse basic one-or-more 02`` () = parseRegex "ab+cd+" |> should equal (SequenceAstNode [(CharAstNode 'a'); (OneOrMoreAstNode (CharAstNode 'b')); (CharAstNode 'c'); (OneOrMoreAstNode (CharAstNode 'd'))])
+    let ``Regex parse basic one-or-more 02`` () = parseRegex "ab+cd+" |> should equal (SequenceAstNode [CharAstNode 'a'; OneOrMoreAstNode (CharAstNode 'b'); CharAstNode 'c'; OneOrMoreAstNode (CharAstNode 'd')])
 
     // Basic zero-or-one cases
     [<Fact>]
     let ``Regex parse basic zero-or-one 00`` () = parseRegex "P?" |> should equal (ZeroOrOneAstNode (CharAstNode 'P'))
 
     [<Fact>]
-    let ``Regex parse basic zero-or-one 01`` () = parseRegex "ab?c" |> should equal (SequenceAstNode [(CharAstNode 'a'); (ZeroOrOneAstNode (CharAstNode 'b')); (CharAstNode 'c')])
+    let ``Regex parse basic zero-or-one 01`` () = parseRegex "ab?c" |> should equal (SequenceAstNode [CharAstNode 'a'; ZeroOrOneAstNode (CharAstNode 'b'); CharAstNode 'c'])
 
     [<Fact>]
-    let ``Regex parse basic zero-or-one 02`` () = parseRegex "ab?cd?" |> should equal (SequenceAstNode [(CharAstNode 'a'); (ZeroOrOneAstNode (CharAstNode 'b')); (CharAstNode 'c'); (ZeroOrOneAstNode (CharAstNode 'd'))])
+    let ``Regex parse basic zero-or-one 02`` () = parseRegex "ab?cd?" |> should equal (SequenceAstNode [CharAstNode 'a'; ZeroOrOneAstNode (CharAstNode 'b'); CharAstNode 'c'; ZeroOrOneAstNode (CharAstNode 'd')])
+
+    // Basic or cases
+    [<Fact>]
+    let ``Regex parse basic or 00`` () = parseRegex "a|b" |> should equal (OrAstNode (CharAstNode 'a', CharAstNode 'b'))
 
     // Error cases
     [<Fact>]

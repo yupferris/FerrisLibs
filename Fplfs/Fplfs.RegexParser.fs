@@ -11,12 +11,12 @@
         | 0 -> failwith "String must not be empty"
         | _ ->
             let rec parseChars acc pos =
-                let handleModifierChar c f = function
-                    | [] -> failwith (sprintf "'%c' found with no preceding expression" c)
-                    | head :: tail -> f head :: tail
-
                 if pos >= s.Length then acc
                 else
+                    let handleModifierChar c f = function
+                        | [] -> failwith (sprintf "'%c' found with no preceding expression" c)
+                        | head :: tail -> f head :: tail
+
                     let acc' =
                         match s.[pos] with
                         | '*' -> handleModifierChar '*' ZeroOrMoreAstNode acc

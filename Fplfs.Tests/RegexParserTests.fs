@@ -40,9 +40,44 @@
     [<Fact>]
     let ``Regex parse basic zero-or-more 02`` () = parseRegex "ab*cd*" |> should equal (SequenceAstNode [(CharAstNode 'a'); (ZeroOrMoreAstNode (CharAstNode 'b')); (CharAstNode 'c'); (ZeroOrMoreAstNode (CharAstNode 'd'))])
 
+    // Basic one-or-more cases
+    [<Fact>]
+    let ``Regex parse basic one-or-more 00`` () = parseRegex "P+" |> should equal (OneOrMoreAstNode (CharAstNode 'P'))
+
+    [<Fact>]
+    let ``Regex parse basic one-or-more 01`` () = parseRegex "ab+c" |> should equal (SequenceAstNode [(CharAstNode 'a'); (OneOrMoreAstNode (CharAstNode 'b')); (CharAstNode 'c')])
+
+    [<Fact>]
+    let ``Regex parse basic one-or-more 02`` () = parseRegex "ab+cd+" |> should equal (SequenceAstNode [(CharAstNode 'a'); (OneOrMoreAstNode (CharAstNode 'b')); (CharAstNode 'c'); (OneOrMoreAstNode (CharAstNode 'd'))])
+
+    // Basic zero-or-one cases
+    [<Fact>]
+    let ``Regex parse basic zero-or-one 00`` () = parseRegex "P?" |> should equal (ZeroOrOneAstNode (CharAstNode 'P'))
+
+    [<Fact>]
+    let ``Regex parse basic zero-or-one 01`` () = parseRegex "ab?c" |> should equal (SequenceAstNode [(CharAstNode 'a'); (ZeroOrOneAstNode (CharAstNode 'b')); (CharAstNode 'c')])
+
+    [<Fact>]
+    let ``Regex parse basic zero-or-one 02`` () = parseRegex "ab?cd?" |> should equal (SequenceAstNode [(CharAstNode 'a'); (ZeroOrOneAstNode (CharAstNode 'b')); (CharAstNode 'c'); (ZeroOrOneAstNode (CharAstNode 'd'))])
+
     // Error cases
     [<Fact>]
     let ``Regex parse empty string 00`` () = testException (fun () -> parseRegex "")
 
     [<Fact>]
     let ``Regex parse bad zero-or-more 00`` () = testException (fun () -> parseRegex "*")
+
+    [<Fact>]
+    let ``Regex parse bad zero-or-more 01`` () = testException (fun () -> parseRegex "*a0000000 asd")
+
+    [<Fact>]
+    let ``Regex parse bad one-or-more 00`` () = testException (fun () -> parseRegex "+")
+
+    [<Fact>]
+    let ``Regex parse bad one-or-more 01`` () = testException (fun () -> parseRegex "+poasdfp")
+
+    [<Fact>]
+    let ``Regex parse bad zero-or-one 00`` () = testException (fun () -> parseRegex "?")
+
+    [<Fact>]
+    let ``Regex parse bad zero-or-one 01`` () = testException (fun () -> parseRegex "?asdf09s999")

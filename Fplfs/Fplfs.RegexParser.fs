@@ -15,7 +15,7 @@
                 | x -> SequenceAstNode (List.rev x)
 
             let rec parseChars acc pos =
-                if pos >= s.Length then acc
+                if pos >= s.Length then (acc, pos)
                 else
                     let pos' = pos + 1
 
@@ -27,9 +27,16 @@
                     | '*' -> handleModifierChar '*' ZeroOrMoreAstNode acc
                     | '+' -> handleModifierChar '+' OneOrMoreAstNode acc
                     | '?' -> handleModifierChar '?' ZeroOrOneAstNode acc
-                    | '|' -> [OrAstNode (finishExpression acc, parseExpression pos')]
+                    | '|' ->
+                        let left = finishExpression acc
+                        let right, pos' = parseExpression pos'
+                        ([OrAstNode (left, right)], pos')
+                    | '(' -> // TODO: right paren :P
+                        let expr, pos' = parseExpression pos'
+                        parseChars (expr :: acc) pos'
                     | x -> parseChars (CharAstNode x :: acc) pos'
 
-            finishExpression (parseChars [] pos)
+            let contents, pos' = parseChars [] pos
+            (finishExpression contents, pos')
 
-        parseExpression 0
+        fst (parseExpression 0)

@@ -8,7 +8,7 @@
         | OrAstNode of RegexAstNode * RegexAstNode
 
     let parseRegex (s : string) =
-        let rec parseExpression pos =
+        let rec parseExpression parenLevel pos =
             let finishExpression = function
                 | [] -> failwith "Expression cannot be empty"
                 | [x] -> x
@@ -29,14 +29,17 @@
                     | '?' -> handleModifierChar '?' ZeroOrOneAstNode acc
                     | '|' ->
                         let left = finishExpression acc
-                        let right, pos' = parseExpression pos'
+                        let right, pos' = parseExpression parenLevel pos'
                         ([OrAstNode (left, right)], pos')
-                    | '(' -> // TODO: right paren :P
-                        let expr, pos' = parseExpression pos'
+                    | '(' ->
+                        let expr, pos' = parseExpression (parenLevel + 1) pos'
                         parseChars (expr :: acc) pos'
+                    | ')' ->
+                        if parenLevel <= 0 then failwith "')' with no preceeding '('"
+                        (acc, pos')
                     | x -> parseChars (CharAstNode x :: acc) pos'
 
             let contents, pos' = parseChars [] pos
             (finishExpression contents, pos')
 
-        fst (parseExpression 0)
+        fst (parseExpression 0 0)

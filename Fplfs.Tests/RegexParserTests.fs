@@ -34,6 +34,12 @@
     [<Fact>]
     let ``Regex parse basic zero-or-more 00`` () = parseRegex "P*" |> should equal (ZeroOrMoreAstNode (CharAstNode 'P'))
 
+    [<Fact>]
+    let ``Regex parse basic zero-or-more 01`` () = parseRegex "ab*c" |> should equal (SequenceAstNode [(CharAstNode 'a'); (ZeroOrMoreAstNode (CharAstNode 'b')); (CharAstNode 'c')])
+
+    [<Fact>]
+    let ``Regex parse basic zero-or-more 02`` () = parseRegex "ab*cd*" |> should equal (SequenceAstNode [(CharAstNode 'a'); (ZeroOrMoreAstNode (CharAstNode 'b')); (CharAstNode 'c'); (ZeroOrMoreAstNode (CharAstNode 'd'))])
+
     // Error cases
     [<Fact>]
     let ``Regex parse empty string 00`` () = testException (fun () -> parseRegex "")

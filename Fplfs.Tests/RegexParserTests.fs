@@ -90,6 +90,33 @@
     [<Fact>]
     let ``Regex parse escape seq 03`` () = parseRegex "\\n" |> should equal (CharAstNode '\n')
 
+    [<Fact>]
+    let ``Regex parse escape seq 04`` () = parseRegex "\\(" |> should equal (CharAstNode '(')
+
+    [<Fact>]
+    let ``Regex parse escape seq 05`` () = parseRegex "\\)" |> should equal (CharAstNode ')')
+
+    [<Fact>]
+    let ``Regex parse escape seq 06`` () = parseRegex "\\|" |> should equal (CharAstNode '|')
+
+    [<Fact>]
+    let ``Regex parse escape seq 07`` () = parseRegex "\\*" |> should equal (CharAstNode '*')
+
+    [<Fact>]
+    let ``Regex parse escape seq 08`` () = parseRegex "\\+" |> should equal (CharAstNode '+')
+
+    [<Fact>]
+    let ``Regex parse escape seq 09`` () = parseRegex "\\?" |> should equal (CharAstNode '?')
+
+    [<Fact>]
+    let ``Regex parse escape seq 10`` () = parseRegex "\\$" |> should equal (CharAstNode '$')
+
+    [<Fact>]
+    let ``Regex parse escape seq 11`` () = parseRegex "\\[" |> should equal (CharAstNode '[')
+
+    [<Fact>]
+    let ``Regex parse escape seq 12`` () = parseRegex "\\." |> should equal (CharAstNode '.')
+
     // Complex cases
     [<Fact>]
     let ``Regex parse complex 00`` () =

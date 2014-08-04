@@ -32,7 +32,11 @@
                         | 't' -> '\t'
                         | 'r' -> '\r'
                         | 'n' -> '\n'
-                        | _ -> failwith "Invalid character escape sequence"
+                        | c ->
+                            // TODO: This is structured this way for character class specialization later
+                            match c with
+                            | '(' | ')' | '|' | '*' | '+' | '?' | '$' | '[' | '.' -> c
+                            | _ -> failwith "Invalid character escape sequence"
 
                     match s.[pos] with
                     | '*' -> handleModifierChar '*' ZeroOrMoreAstNode acc

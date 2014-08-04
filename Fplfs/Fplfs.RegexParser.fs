@@ -7,9 +7,12 @@
         match s.Length with
         | 0 -> failwith "String must not be empty"
         | _ ->
-            let parseChar nodeAcc stringPos =
-                CharAstNode s.[stringPos] :: nodeAcc
+            let parseChar pos =
+                CharAstNode s.[pos]
 
-            match parseChar [] 0 with
+            let rec parseChars pos =
+                if pos < s.Length then parseChar pos :: parseChars (pos + 1) else []
+
+            match parseChars 0 with
             | [x] -> x
             | x -> SequenceAstNode x

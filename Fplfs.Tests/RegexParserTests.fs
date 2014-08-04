@@ -30,6 +30,13 @@
     [<Fact>]
     let ``Regex parse basic sequence 02`` () = parseRegex "ääääääää" |> should equal (SequenceAstNode [for _ in 0 .. 7 -> CharAstNode 'ä'])
 
+    // Basic zero-or-more cases
+    [<Fact>]
+    let ``Regex parse basic zero-or-more 00`` () = parseRegex "P*" |> should equal (ZeroOrMoreAstNode (CharAstNode 'P'))
+
     // Error cases
     [<Fact>]
-    let ``Regex parse empty string`` () = testException (fun () -> parseRegex "")
+    let ``Regex parse empty string 00`` () = testException (fun () -> parseRegex "")
+
+    [<Fact>]
+    let ``Regex parse bad zero-or-more 00`` () = testException (fun () -> parseRegex "*")

@@ -64,6 +64,9 @@
     [<Fact>]
     let ``Regex parse basic or 00`` () = parseRegex "a|b" |> should equal (OrAstNode (CharAstNode 'a', CharAstNode 'b'))
 
+    [<Fact>]
+    let ``Regex parse basic or 01`` () = parseRegex "a|b|c" |> should equal (OrAstNode (CharAstNode 'a', OrAstNode (CharAstNode 'b', CharAstNode 'c')))
+
     // Error cases
     [<Fact>]
     let ``Regex parse empty string 00`` () = testException (fun () -> parseRegex "")
@@ -85,3 +88,9 @@
 
     [<Fact>]
     let ``Regex parse bad zero-or-one 01`` () = testException (fun () -> parseRegex "?asdf09s999")
+
+    [<Fact>]
+    let ``Regex parse bad or 00`` () = testException (fun () -> parseRegex "a|")
+
+    [<Fact>]
+    let ``Regex parse bad or 01`` () = testException (fun () -> parseRegex "|b")

@@ -92,6 +92,17 @@
                     (ZeroOrMoreAstNode (CharAstNode 'c'),
                     SequenceAstNode [CharAstNode 'b'; CharAstNode 'b'])))
 
+    [<Fact>]
+    let ``Regex parse complex 01`` () =
+        parseRegex "(;|//)(abc)*"
+        |> should equal
+            (SequenceAstNode
+                [OrAstNode
+                    (CharAstNode ';',
+                    SequenceAstNode [CharAstNode '/'; CharAstNode '/']);
+                ZeroOrMoreAstNode
+                    (SequenceAstNode [CharAstNode 'a'; CharAstNode 'b'; CharAstNode 'c'])])
+
     // Error cases
     [<Fact>]
     let ``Regex parse empty string 00`` () = testException (fun () -> parseRegex "")

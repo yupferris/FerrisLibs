@@ -15,6 +15,10 @@
     [<Fact>]
     let ``Regex parse single character 01`` () = parseRegex "Q" |> should equal (CharAstNode 'Q')
 
+    // Basic sequence cases
+    [<Fact>]
+    let ``Regex parse basic sequence 00`` () = parseRegex "abc" |> should equal (SequenceAstNode [(CharAstNode 'a'); (CharAstNode 'b'); (CharAstNode 'c')])
+
     // Error cases
     [<Fact>]
     let ``Regex parse empty string`` () = testException (fun () -> parseRegex "")

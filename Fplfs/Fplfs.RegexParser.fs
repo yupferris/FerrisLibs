@@ -1,12 +1,15 @@
 ﻿module Fplfs.RegexParser
     type RegexAstNode =
         | CharAstNode of char
-        (*| OrAstNode of RegexAstNode * RegexAstNode
-        | ZeroOrMoreAstNode of RegexAstNode
-        | OneOrMoreAstNode of RegexAstNode
-        | ZeroOrOneAstNode of RegexAstNode*)
+        | SequenceAstNode of RegexAstNode list
 
     let parseRegex (s : string) =
         match s.Length with
         | 0 -> failwith "String must not be empty"
-        | _ -> CharAstNode s.[0]
+        | _ ->
+            let parseChar nodeAcc stringPos =
+                CharAstNode s.[stringPos] :: nodeAcc
+
+            match parseChar [] 0 with
+            | [x] -> x
+            | x -> SequenceAstNode x

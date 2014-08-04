@@ -15,7 +15,9 @@
                 | x -> SequenceAstNode (List.rev x)
 
             let rec parseChars acc pos =
-                if pos >= s.Length then (acc, pos)
+                if pos >= s.Length then
+                    if parenLevel > 0 then failwith "Expected ')'"
+                    (acc, pos)
                 else
                     let pos' = pos + 1
 

@@ -119,3 +119,15 @@
 
     [<Fact>]
     let ``Regex parse bad or 01`` () = testException (fun () -> parseRegex "|b")
+
+    [<Fact>]
+    let ``Regex parse bad parens 00`` () = testException (fun () -> parseRegex "(")
+
+    [<Fact>]
+    let ``Regex parse bad parens 01`` () = testException (fun () -> parseRegex ")")
+
+    [<Fact>]
+    let ``Regex parse bad parens 02`` () = testException (fun () -> parseRegex "(s(d(dsss+(d)d))")
+
+    [<Fact>]
+    let ``Regex parse bad parens 03`` () = testException (fun () -> parseRegex "((sdf)ff)f)")

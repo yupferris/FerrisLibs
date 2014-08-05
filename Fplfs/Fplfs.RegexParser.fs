@@ -82,6 +82,15 @@
                                 if pos = startPos then parseClassChars startPos true acc pos'
                                 else parseClassChars startPos isInverse (c :: acc) pos'
                             | '\\' -> parseClassChars startPos isInverse (parseEscapeSequence true pos' :: acc) (pos' + 1)
+                            | '-' ->
+                                let rangeError () = failwith "Invalid character range"
+                                match acc with
+                                | [] -> rangeError()
+                                | startChar :: _ ->
+                                    let endChar = getChar pos'
+                                    if startChar >= endChar then rangeError()
+                                    let acc' = (List.rev [char ((int startChar) + 1) .. endChar]) @ acc
+                                    parseClassChars startPos isInverse acc' (pos' + 1)
                             | _ -> parseClassChars startPos isInverse (c :: acc) pos'
                         let isInverse, chars, pos' = parseClassChars pos' false [] pos'
                         parseChars (CharacterClassAstNode (CharacterSet (isInverse, List.rev chars)) :: acc) pos'

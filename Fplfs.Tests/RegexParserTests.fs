@@ -161,6 +161,16 @@
     [<Fact>]
     let ``Regex parse character classes esc seq 05`` () = parseRegex "[\\-]" |> should equal (CharacterClassAstNode (CharacterSet (false, ['-'])))
 
+    // Basic character ranges
+    [<Fact>]
+    let ``Regex parse character ranges 00`` () = parseRegex "[0-1]" |> should equal (CharacterClassAstNode (CharacterSet (false, ['0'; '1'])))
+
+    [<Fact>]
+    let ``Regex parse character ranges 01`` () = parseRegex "[_x-z]" |> should equal (CharacterClassAstNode (CharacterSet (false, ['_'; 'x'; 'y'; 'z'])))
+
+    [<Fact>]
+    let ``Regex parse character ranges 02`` () = parseRegex "[a-c1-3]" |> should equal (CharacterClassAstNode (CharacterSet (false, ['a'; 'b'; 'c'; '1'; '2'; '3'])))
+
     // Complex cases
     [<Fact>]
     let ``Regex parse complex 00`` () =
@@ -294,3 +304,15 @@
 
     [<Fact>]
     let ``Regex parse bad character class 02`` () = testException (fun () -> parseRegex "[]")
+
+    [<Fact>]
+    let ``Regex parse bad character range 00`` () = testException (fun () -> parseRegex "[-")
+
+    [<Fact>]
+    let ``Regex parse bad character range 01`` () = testException (fun () -> parseRegex "[^-")
+
+    [<Fact>]
+    let ``Regex parse bad character range 02`` () = testException (fun () -> parseRegex "[a-")
+
+    [<Fact>]
+    let ``Regex parse bad character range 03`` () = testException (fun () -> parseRegex "[3-1")

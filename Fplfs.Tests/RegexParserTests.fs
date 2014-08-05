@@ -130,6 +130,15 @@
     [<Fact>]
     let ``Regex parse character classes 03`` () = parseRegex "[abc]" |> should equal (CharacterClassAstNode (CharacterSet (false, ['a'; 'b'; 'c'])))
 
+    [<Fact>]
+    let ``Regex parse character classes 04`` () = parseRegex "[Å]" |> should equal (CharacterClassAstNode (CharacterSet (false, ['Å'])))
+
+    [<Fact>]
+    let ``Regex parse character classes 05`` () = parseRegex "[^jake]" |> should equal (CharacterClassAstNode (CharacterSet (true, ['j'; 'a'; 'k'; 'e'])))
+
+    [<Fact>]
+    let ``Regex parse character classes 06`` () = parseRegex "[^^]" |> should equal (CharacterClassAstNode (CharacterSet (true, ['^'])))
+
     // Complex cases
     [<Fact>]
     let ``Regex parse complex 00`` () =
@@ -155,6 +164,17 @@
                     SequenceAstNode [CharAstNode '/'; CharAstNode '/']);
                 ZeroOrMoreAstNode
                     (SequenceAstNode [CharAstNode 'a'; CharAstNode 'b'; CharAstNode '|'; CharAstNode 'c'])])
+
+    [<Fact>]
+    let ``Regex parse complex 02`` () =
+        parseRegex "(a|[^this]b)|c"
+        |> should equal
+            (OrAstNode
+                (OrAstNode
+                    (CharAstNode 'a',
+                    SequenceAstNode
+                        [CharacterClassAstNode (CharacterSet (true, ['t'; 'h'; 'i'; 's'])); CharAstNode 'b']),
+                CharAstNode 'c'))
 
     // Error cases
     [<Fact>]
@@ -210,3 +230,6 @@
 
     [<Fact>]
     let ``Regex parse bad character class 01`` () = testException (fun () -> parseRegex "[abc")
+
+    [<Fact>]
+    let ``Regex parse bad character class 02`` () = testException (fun () -> parseRegex "[]")

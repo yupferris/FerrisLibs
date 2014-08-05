@@ -30,16 +30,18 @@
                         | [] -> failwith (sprintf "'%c' found with no preceding expression" c)
                         | head :: tail -> parseChars (f head :: tail) pos'
 
-                    let checkPos pos = if pos >= s.Length then failwith "Unexpected end of string"
+                    let getChar pos =
+                        if pos >= s.Length then failwith "Unexpected end of string"
+                        s.[pos]
 
                     let parseEscapeSequence pos =
-                        checkPos pos
-                        match s.[pos] with
+                        let c = getChar pos
+                        match c with
                         | '\\' -> '\\'
                         | 't' -> '\t'
                         | 'r' -> '\r'
                         | 'n' -> '\n'
-                        | c ->
+                        | _ ->
                             // TODO: This is structured this way for character class specialization later
                             match c with
                             | '(' | ')' | '|' | '*' | '+' | '?' | '$' | '[' | '.' -> c
@@ -63,11 +65,17 @@
                     | '.' -> parseChars (CharacterClassAstNode AnyCharacter :: acc) pos'
                     | '[' ->
                         let rec parseClassChars startPos isInverse acc pos =
-                            checkPos pos
                             let pos' = pos + 1
-                            match s.[pos] with
-                            | ']' -> (isInverse, acc, pos')
-                            | c -> parseClassChars startPos isInverse (c :: acc) pos'
+                            let c = getChar pos
+                            match c with
+                            | ']' ->
+                                match acc with
+                                | [] -> failwith "Character class must not be empty"
+                                | _ -> (isInverse, acc, pos')
+                            | '^' ->
+                                if pos = startPos then parseClassChars startPos true acc pos'
+                                else parseClassChars startPos isInverse (c :: acc) pos'
+                            | _ -> parseClassChars startPos isInverse (c :: acc) pos'
                         let isInverse, chars, pos' = parseClassChars pos' false [] pos'
                         parseChars (CharacterClassAstNode (CharacterSet (isInverse, List.rev chars)) :: acc) pos'
                     | x -> parseChars (CharAstNode x :: acc) pos'

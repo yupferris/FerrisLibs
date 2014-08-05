@@ -30,8 +30,10 @@
                         | [] -> failwith (sprintf "'%c' found with no preceding expression" c)
                         | head :: tail -> parseChars (f head :: tail) pos'
 
+                    let checkPos pos = if pos >= s.Length then failwith "Unexpected end of string"
+
                     let parseEscapeSequence pos =
-                        if pos >= s.Length then failwith "Unexpected end of string"
+                        checkPos pos
                         match s.[pos] with
                         | '\\' -> '\\'
                         | 't' -> '\t'
@@ -61,7 +63,7 @@
                     | '.' -> parseChars (CharacterClassAstNode AnyCharacter :: acc) pos'
                     | '[' ->
                         let rec parseClassChars startPos isInverse acc pos =
-                            if pos >= s.Length then failwith "Unexpected end of string"
+                            checkPos pos
                             let pos' = pos + 1
                             match s.[pos] with
                             | ']' -> (isInverse, acc, pos')

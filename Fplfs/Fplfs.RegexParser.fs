@@ -34,7 +34,7 @@
                         if pos >= s.Length then failwith "Unexpected end of string"
                         s.[pos]
 
-                    let parseEscapeSequence pos =
+                    let parseEscapeSequence isInCharacterClass pos =
                         let c = getChar pos
                         match c with
                         | '\\' -> '\\'
@@ -42,10 +42,15 @@
                         | 'r' -> '\r'
                         | 'n' -> '\n'
                         | _ ->
-                            // TODO: This is structured this way for character class specialization later
-                            match c with
-                            | '(' | ')' | '|' | '*' | '+' | '?' | '$' | '[' | '.' -> c
-                            | _ -> failwith "Invalid character escape sequence"
+                            match isInCharacterClass with
+                            | false ->
+                                match c with
+                                | '(' | ')' | '|' | '*' | '+' | '?' | '$' | '[' | '.' -> c
+                                | _ -> failwith "Invalid character escape sequence"
+                            | _ ->
+                                match c with
+                                | ']' | '-' -> c
+                                | _ -> failwith "Invalid character escape sequence"
 
                     match s.[pos] with
                     | '*' -> handleModifierChar '*' ZeroOrMoreAstNode acc
@@ -61,7 +66,7 @@
                     | ')' ->
                         if parenLevel <= 0 then failwith "')' with no preceeding '('"
                         (acc, pos')
-                    | '\\' -> parseChars (CharAstNode (parseEscapeSequence pos') :: acc) (pos' + 1)
+                    | '\\' -> parseChars (CharAstNode (parseEscapeSequence false pos') :: acc) (pos' + 1)
                     | '.' -> parseChars (CharacterClassAstNode AnyCharacter :: acc) pos'
                     | '[' ->
                         let rec parseClassChars startPos isInverse acc pos =
@@ -75,6 +80,7 @@
                             | '^' ->
                                 if pos = startPos then parseClassChars startPos true acc pos'
                                 else parseClassChars startPos isInverse (c :: acc) pos'
+                            | '\\' -> parseClassChars startPos isInverse (parseEscapeSequence true pos' :: acc) (pos' + 1)
                             | _ -> parseClassChars startPos isInverse (c :: acc) pos'
                         let isInverse, chars, pos' = parseClassChars pos' false [] pos'
                         parseChars (CharacterClassAstNode (CharacterSet (isInverse, List.rev chars)) :: acc) pos'

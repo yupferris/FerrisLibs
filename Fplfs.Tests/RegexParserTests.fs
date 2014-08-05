@@ -139,6 +139,28 @@
     [<Fact>]
     let ``Regex parse character classes 06`` () = parseRegex "[^^]" |> should equal (CharacterClassAstNode (CharacterSet (true, ['^'])))
 
+    [<Fact>]
+    let ``Regex parse character classes 07`` () = parseRegex "[^a ^]" |> should equal (CharacterClassAstNode (CharacterSet (true, ['a'; ' '; '^'])))
+
+    // Character class escape sequences
+    [<Fact>]
+    let ``Regex parse character classes esc seq 00`` () = parseRegex "[\\\\]" |> should equal (CharacterClassAstNode (CharacterSet (false, ['\\'])))
+
+    [<Fact>]
+    let ``Regex parse character classes esc seq 01`` () = parseRegex "[\\t]" |> should equal (CharacterClassAstNode (CharacterSet (false, ['\t'])))
+
+    [<Fact>]
+    let ``Regex parse character classes esc seq 02`` () = parseRegex "[\\r]" |> should equal (CharacterClassAstNode (CharacterSet (false, ['\r'])))
+
+    [<Fact>]
+    let ``Regex parse character classes esc seq 03`` () = parseRegex "[\\n]" |> should equal (CharacterClassAstNode (CharacterSet (false, ['\n'])))
+
+    [<Fact>]
+    let ``Regex parse character classes esc seq 04`` () = parseRegex "[\\]]" |> should equal (CharacterClassAstNode (CharacterSet (false, [']'])))
+
+    [<Fact>]
+    let ``Regex parse character classes esc seq 05`` () = parseRegex "[\\-]" |> should equal (CharacterClassAstNode (CharacterSet (false, ['-'])))
+
     // Complex cases
     [<Fact>]
     let ``Regex parse complex 00`` () =
@@ -224,6 +246,45 @@
 
     [<Fact>]
     let ``Regex parse bad escape seq 02`` () = testException (fun () -> parseRegex "\\j")
+
+    [<Fact>]
+    let ``Regex parse bad escape seq 03`` () = testException (fun () -> parseRegex "\\]")
+
+    [<Fact>]
+    let ``Regex parse bad escape seq 04`` () = testException (fun () -> parseRegex "\\-")
+
+    [<Fact>]
+    let ``Regex parse bad char class esc seq 00`` () = testException (fun () -> parseRegex "[\\")
+
+    [<Fact>]
+    let ``Regex parse bad char class esc seq 01`` () = testException (fun () -> parseRegex "[\\]")
+
+    [<Fact>]
+    let ``Regex parse bad char class esc seq 02`` () = testException (fun () -> parseRegex "[\\(]")
+
+    [<Fact>]
+    let ``Regex parse bad char class esc seq 03`` () = testException (fun () -> parseRegex "[\\)]")
+
+    [<Fact>]
+    let ``Regex parse bad char class esc seq 04`` () = testException (fun () -> parseRegex "[\\|]")
+
+    [<Fact>]
+    let ``Regex parse bad char class esc seq 05`` () = testException (fun () -> parseRegex "[\\*]")
+
+    [<Fact>]
+    let ``Regex parse bad char class esc seq 06`` () = testException (fun () -> parseRegex "[\\+]")
+
+    [<Fact>]
+    let ``Regex parse bad char class esc seq 07`` () = testException (fun () -> parseRegex "[\\?]")
+
+    [<Fact>]
+    let ``Regex parse bad char class esc seq 08`` () = testException (fun () -> parseRegex "[\\$]")
+
+    [<Fact>]
+    let ``Regex parse bad char class esc seq 09`` () = testException (fun () -> parseRegex "[\\[]")
+
+    [<Fact>]
+    let ``Regex parse bad char class esc seq 10`` () = testException (fun () -> parseRegex "[\\.]")
 
     [<Fact>]
     let ``Regex parse bad character class 00`` () = testException (fun () -> parseRegex "[")

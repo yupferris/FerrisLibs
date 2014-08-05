@@ -208,6 +208,33 @@
                         [CharacterClassAstNode (CharacterSet (true, ['t'; 'h'; 'i'; 's'])); CharAstNode 'b']),
                 CharAstNode 'c'))
 
+    [<Fact>]
+    let ``Regex parse complex 03`` () =
+        parseRegex "($[0-9a-fA-F]+)|(%[01]+)|(-?[0-9]+)"
+        |> should equal
+            (OrAstNode
+                (SequenceAstNode
+                    [CharAstNode '$';
+                    OneOrMoreAstNode
+                        (CharacterClassAstNode
+                            (CharacterSet
+                                (false,
+                                ['0'; '1'; '2'; '3'; '4'; '5'; '6'; '7'; '8'; '9';
+                                'a'; 'b'; 'c'; 'd'; 'e'; 'f';
+                                'A'; 'B'; 'C'; 'D'; 'E'; 'F'])))],
+                (OrAstNode
+                    (SequenceAstNode
+                        [CharAstNode '%';
+                        OneOrMoreAstNode
+                            (CharacterClassAstNode (CharacterSet (false, ['0'; '1'])))],
+                    SequenceAstNode
+                        [ZeroOrOneAstNode (CharAstNode '-');
+                        OneOrMoreAstNode
+                            (CharacterClassAstNode
+                                (CharacterSet
+                                    (false,
+                                    ['0'; '1'; '2'; '3'; '4'; '5'; '6'; '7'; '8'; '9'])))]))))
+
     // Error cases
     [<Fact>]
     let ``Regex parse empty string 00`` () = testException (fun () -> parseRegex "")

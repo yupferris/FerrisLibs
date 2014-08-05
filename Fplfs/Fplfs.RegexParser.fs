@@ -1,6 +1,7 @@
 ﻿module Fplfs.RegexParser
-    type CharacterClassType =
+    type CharacterClass =
         | AnyCharacter
+        | CharacterSet of bool * char list
 
     type RegexAstNode =
         | CharAstNode of char
@@ -9,7 +10,7 @@
         | OneOrMoreAstNode of RegexAstNode
         | ZeroOrOneAstNode of RegexAstNode
         | OrAstNode of RegexAstNode * RegexAstNode
-        | CharacterClassAstNode of CharacterClassType
+        | CharacterClassAstNode of CharacterClass
 
     let parseRegex (s : string) =
         let rec parseExpression parenLevel pos =
@@ -58,6 +59,15 @@
                         (acc, pos')
                     | '\\' -> parseChars (CharAstNode (parseEscapeSequence pos') :: acc) (pos' + 1)
                     | '.' -> parseChars (CharacterClassAstNode AnyCharacter :: acc) pos'
+                    | '[' ->
+                        let rec parseClassChars startPos isInverse acc pos =
+                            if pos >= s.Length then failwith "Unexpected end of string" // TODO: Test
+                            let pos' = pos + 1
+                            match s.[pos] with
+                            | ']' -> (isInverse, acc, pos')
+                            | c -> parseClassChars startPos isInverse (c :: acc) pos'
+                        let isInverse, chars, pos' = parseClassChars pos' false [] pos'
+                        parseChars (CharacterClassAstNode (CharacterSet (isInverse, List.rev chars)) :: acc) pos'
                     | x -> parseChars (CharAstNode x :: acc) pos'
 
             let contents, pos' = parseChars [] pos

@@ -127,6 +127,9 @@
     [<Fact>]
     let ``Regex parse character classes 02`` () = parseRegex "a.*b" |> should equal (SequenceAstNode [CharAstNode 'a'; ZeroOrMoreAstNode (CharacterClassAstNode AnyCharacter); CharAstNode 'b'])
 
+    [<Fact>]
+    let ``Regex parse character classes 03`` () = parseRegex "[abc]" |> should equal (CharacterClassAstNode (CharacterSet (false, ['a'; 'b'; 'c'])))
+
     // Complex cases
     [<Fact>]
     let ``Regex parse complex 00`` () =

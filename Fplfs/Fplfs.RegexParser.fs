@@ -61,7 +61,7 @@
                     | '.' -> parseChars (CharacterClassAstNode AnyCharacter :: acc) pos'
                     | '[' ->
                         let rec parseClassChars startPos isInverse acc pos =
-                            if pos >= s.Length then failwith "Unexpected end of string" // TODO: Test
+                            if pos >= s.Length then failwith "Unexpected end of string"
                             let pos' = pos + 1
                             match s.[pos] with
                             | ']' -> (isInverse, acc, pos')

@@ -204,3 +204,9 @@
 
     [<Fact>]
     let ``Regex parse bad escape seq 02`` () = testException (fun () -> parseRegex "\\j")
+
+    [<Fact>]
+    let ``Regex parse bad character class 00`` () = testException (fun () -> parseRegex "[")
+
+    [<Fact>]
+    let ``Regex parse bad character class 01`` () = testException (fun () -> parseRegex "[abc")

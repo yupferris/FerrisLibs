@@ -35,6 +35,7 @@
                         s.[pos]
 
                     let parseEscapeSequence isInCharacterClass pos =
+                        let error () = failwith "Invalid character escape sequence"
                         let c = getChar pos
                         match c with
                         | '\\' -> '\\'
@@ -46,11 +47,11 @@
                             | false ->
                                 match c with
                                 | '(' | ')' | '|' | '*' | '+' | '?' | '$' | '[' | '.' -> c
-                                | _ -> failwith "Invalid character escape sequence"
+                                | _ -> error()
                             | _ ->
                                 match c with
                                 | ']' | '-' -> c
-                                | _ -> failwith "Invalid character escape sequence"
+                                | _ -> error()
 
                     match s.[pos] with
                     | '*' -> handleModifierChar '*' ZeroOrMoreAstNode acc

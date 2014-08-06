@@ -38,17 +38,16 @@
                         let error () = failwith "Invalid character escape sequence"
                         let c = getChar pos
                         match c with
-                        | '\\' -> '\\'
+                        | '\\' -> c
                         | 't' -> '\t'
                         | 'r' -> '\r'
                         | 'n' -> '\n'
                         | _ ->
-                            match isInCharacterClass with
-                            | false ->
+                            if not isInCharacterClass then
                                 match c with
                                 | '(' | ')' | '|' | '*' | '+' | '?' | '$' | '[' | '.' -> c
                                 | _ -> error()
-                            | _ ->
+                            else
                                 match c with
                                 | ']' | '-' -> c
                                 | _ -> error()

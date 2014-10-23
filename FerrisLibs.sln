@@ -1,6 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1CB5C12E-2E75-4951-AA5D-0546AE62F6BE}"
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Fgl", "Fgl\Fgl.vcxproj", "{6717A9D6-4954-4500-8403-FD6AD2C7835B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{BED444F5-7A16-41AC-BFF3-3C64DA3A467B} = {BED444F5-7A16-41AC-BFF3-3C64DA3A467B}
@@ -25,8 +29,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Fbl", "Fbl\Fbl.vcxproj", "{
 	ProjectSection(ProjectDependencies) = postProject
 		{BED444F5-7A16-41AC-BFF3-3C64DA3A467B} = {BED444F5-7A16-41AC-BFF3-3C64DA3A467B}
 	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1CB5C12E-2E75-4951-AA5D-0546AE62F6BE}"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Fplfs", "Fplfs\Fplfs.fsproj", "{5EEDA3D4-DEBB-4559-B4BE-ADF4309EB6D5}"
 EndProject
